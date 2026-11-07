@@ -5,6 +5,20 @@ export interface SkillGroup {
   items: readonly string[]
 }
 
+export interface ProjectImage {
+  src: string
+  alt: string
+  width: number
+  height: number
+}
+
+export interface ProjectShowcase {
+  /** Logo do projeto, ao lado do título e sobre a mídia. */
+  logo: ProjectImage
+  /** Imagem grande da vitrine; decorativa, use alt vazio. */
+  media: ProjectImage
+}
+
 export interface Project {
   title: string
   description: string
@@ -13,6 +27,8 @@ export interface Project {
   demoUrl?: string
   featured?: boolean
   highlights?: readonly string[]
+  /** Imagens da vitrine; só o projeto em destaque usa. */
+  showcase?: ProjectShowcase
 }
 
 export interface TimelineItem {

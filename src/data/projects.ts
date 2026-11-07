@@ -1,3 +1,5 @@
+import lumiflowMedia from '../assets/lumiflow/fundo.webp'
+import lumiflowLogo from '../assets/lumiflow/logo.webp'
 import type { Project } from '../types'
 
 export const projects: readonly Project[] = [
@@ -28,6 +30,15 @@ export const projects: readonly Project[] = [
     ],
     repoUrl: 'https://github.com/Johnydu/LumiFlow',
     featured: true,
+    showcase: {
+      logo: {
+        src: lumiflowLogo,
+        alt: 'Logo do LumiFlow',
+        width: 384,
+        height: 367,
+      },
+      media: { src: lumiflowMedia, alt: '', width: 1200, height: 800 },
+    },
   },
   {
     title: 'landing-page',
