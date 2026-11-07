@@ -79,7 +79,9 @@ scripts/verify-container.sh
 
 ## Publicação no Railway
 
-1. Crie um serviço no Railway a partir deste repositório. O `Dockerfile` da raiz é detectado.
+1. Crie um serviço no Railway a partir deste repositório. O `railway.json` da
+   raiz define o build pelo `Dockerfile`, o healthcheck em `/` e a política de
+   reinício.
 2. Em **Variables**, defina `VITE_SITE_URL` com o domínio do serviço (ex.: `https://portfolio-production.up.railway.app`).
 3. Gere o domínio público em **Settings → Networking**.
 4. A cada push na `main` o Railway faz o deploy automaticamente.
