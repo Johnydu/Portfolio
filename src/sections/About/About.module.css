@@ -1,0 +1,26 @@
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 44rem;
+  font-size: var(--text-lg);
+}
+
+.ai {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  max-width: 44rem;
+  margin-top: var(--space-10);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+}
+
+.aiTitle {
+  color: var(--color-text);
+  font-size: var(--text-lg);
+}

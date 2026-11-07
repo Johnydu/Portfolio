@@ -1,0 +1,22 @@
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.level {
+  color: var(--color-text);
+  font-size: var(--text-base);
+}
+
+.items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
