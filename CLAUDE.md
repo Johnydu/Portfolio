@@ -26,7 +26,7 @@ React + TypeScript) servida por nginx em container no Railway. Não há back-end
 - `src/data/` — todo o conteúdo (textos, projetos, tecnologias), tipado
 - `src/types/` — tipos do conteúdo
 - `src/components/ui/` — Button, Tag, Card, SectionTitle
-- `src/components/layout/` — Header, Footer
+- `src/components/layout/` — Header, Footer, Section
 - `src/sections/` — Hero, About, Skills, Projects, Timeline, Contact
 - `src/styles/` — `tokens.css` (Design System) e `global.css`
 
