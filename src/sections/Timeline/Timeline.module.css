@@ -1,0 +1,35 @@
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+  margin: 0;
+  padding: 0 0 0 var(--space-6);
+  border-left: 1px solid var(--color-border);
+  list-style: none;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-width: 44rem;
+}
+
+.period {
+  color: var(--color-accent-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+}
+
+.title {
+  font-size: var(--text-xl);
+}
+
+.organization {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.description {
+  color: var(--color-text-muted);
+}
