@@ -30,6 +30,14 @@ describe('Hero', () => {
     }
   })
 
+  it('mostra a foto de Johny com texto alternativo e dimensões', () => {
+    render(<Hero />)
+    const foto = screen.getByRole('img', { name: profile.photo.alt })
+    expect(foto.getAttribute('src')).toBeTruthy()
+    expect(foto).toHaveAttribute('width', '800')
+    expect(foto).toHaveAttribute('height', '800')
+  })
+
   it('é a âncora inicial da página', () => {
     render(<Hero />)
     expect(document.getElementById('inicio')).not.toBeNull()

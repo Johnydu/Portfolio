@@ -27,6 +27,12 @@ export interface Profile {
   headline: string
   location: string
   tagline: string
+  photo: {
+    src: string
+    alt: string
+    width: number
+    height: number
+  }
   about: readonly string[]
   aiNote: string
   links: {

@@ -1,3 +1,4 @@
+import photoSrc from '../assets/johny-duarte.webp'
 import type { Profile } from '../types'
 
 export const profile: Profile = {
@@ -6,6 +7,12 @@ export const profile: Profile = {
   location: 'São José do Rio Preto — SP',
   tagline:
     'Aberto a oportunidades como desenvolvedor Backend Java e a projetos freelance',
+  photo: {
+    src: photoSrc,
+    alt: 'Foto de Johny Duarte, de óculos e blusa preta de gola alta, com os braços cruzados',
+    width: 800,
+    height: 800,
+  },
   about: [
     'Sou estudante de Análise e Desenvolvimento de Sistemas e desenvolvedor com foco em Java e desenvolvimento backend. Tenho interesse em construir aplicações bem estruturadas, APIs REST e sistemas que resolvam problemas reais de negócio.',
     'Atualmente estudo e desenvolvo projetos com Java, Spring Boot, Spring Data JPA, Spring Security e PostgreSQL. Minha experiência prática em ambiente industrial contribui para o meu entendimento de processos operacionais e das necessidades de sistemas de gestão.',
