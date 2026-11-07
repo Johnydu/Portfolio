@@ -29,7 +29,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2) var(--space-6);
-  max-width: var(--container-max);
+  max-width: var(--container-wide);
   min-height: var(--header-height);
   margin: 0 auto;
   padding: var(--space-3) var(--space-6);

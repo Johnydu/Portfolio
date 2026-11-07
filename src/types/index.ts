@@ -31,6 +31,12 @@ export interface Project {
   showcase?: ProjectShowcase
 }
 
+export interface FocusArea {
+  title: string
+  description: string
+  technologies: readonly string[]
+}
+
 export interface TimelineItem {
   title: string
   organization: string

@@ -24,3 +24,61 @@
   color: var(--color-text);
   font-size: var(--text-lg);
 }
+
+.focus {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-top: var(--space-10);
+}
+
+.focusTitle {
+  font-size: var(--text-xl);
+}
+
+.focusList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--space-4);
+}
+
+.focusItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+  transition: border-color var(--transition);
+}
+
+.focusItem:hover {
+  border-color: var(--color-accent);
+}
+
+.focusNumber {
+  color: var(--color-accent-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+}
+
+.focusItemTitle {
+  font-size: var(--text-lg);
+  line-height: var(--leading-tight);
+}
+
+.focusDescription {
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.focusTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: auto;
+  padding-top: var(--space-2);
+}

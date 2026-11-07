@@ -1,0 +1,19 @@
+.layout {
+  display: block;
+}
+
+.main {
+  min-width: 0;
+}
+
+/* A partir de 64rem o cartão de perfil fica fixo à esquerda do conteúdo. */
+@media (min-width: 64rem) {
+  .layout {
+    display: grid;
+    grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
+    gap: var(--space-8);
+    max-width: var(--container-wide);
+    margin: 0 auto;
+    padding: 0 var(--space-6);
+  }
+}

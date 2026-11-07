@@ -51,5 +51,7 @@
   /* Layout e movimento */
   --container-max: 70rem;
   --header-height: 4rem;
+  --container-wide: 80rem;
+  --sidebar-width: 17rem;
   --transition: 150ms ease;
 }
