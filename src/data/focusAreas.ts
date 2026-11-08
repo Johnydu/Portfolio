@@ -1,33 +1,46 @@
 import type { FocusArea } from '../types'
 
 /**
- * Áreas de atuação mostradas em "O que faço", na seção Sobre.
- * Os textos resumem o perfil e o LumiFlow; as tecnologias precisam existir
- * em skills.ts ou em projects.ts (verificado em teste).
+ * Serviços mostrados em "O que faço", na seção Sobre, pensados para quem
+ * procura um desenvolvedor freelance. As tecnologias precisam existir em
+ * skills.ts ou em projects.ts, e os exemplos apontam só para projetos reais
+ * (verificado em teste).
  */
 export const focusAreas: readonly FocusArea[] = [
   {
-    title: 'APIs REST com Spring Boot',
+    title: 'Landing pages',
     description:
-      'Desenvolvo aplicações backend em Java bem estruturadas, com APIs REST que resolvem problemas reais de negócio.',
-    technologies: ['Java', 'Spring Boot', 'APIs REST'],
+      'Página única para divulgar um negócio, serviço ou evento: rápida, responsiva e com chamada direta para o WhatsApp.',
+    technologies: ['HTML5', 'CSS3', 'JavaScript'],
+    example: {
+      label: 'landing page Bushido Karatê',
+      href: 'https://johnydu.github.io/landing-page/',
+    },
   },
   {
-    title: 'Persistência de dados',
+    title: 'Sites institucionais',
     description:
-      'Modelo e acesso dados relacionais com JPA e PostgreSQL, com o esquema do banco versionado por migrações.',
-    technologies: ['Spring Data JPA / Hibernate', 'PostgreSQL', 'Flyway'],
+      'Sites para empresas e profissionais apresentarem o que fazem, com boa leitura no celular, acessibilidade e o básico de SEO para o Google.',
+    technologies: ['React', 'TypeScript', 'HTML5', 'CSS3'],
+    example: {
+      label: 'código deste portfólio',
+      href: 'https://github.com/Johnydu/Portfolio',
+    },
   },
   {
-    title: 'Segurança e níveis de acesso',
+    title: 'Sistemas web',
     description:
-      'Estudo e aplico autenticação e controle de permissões por perfil de usuário, como no LumiFlow.',
-    technologies: ['Spring Security'],
+      'Sistemas sob medida acessados pelo navegador, com cadastros, níveis de acesso por usuário, acompanhamento de processos e histórico.',
+    technologies: ['Java', 'Spring Boot', 'Spring Security', 'PostgreSQL'],
+    example: {
+      label: 'LumiFlow, gestão da produção industrial',
+      href: 'https://github.com/Johnydu/LumiFlow',
+    },
   },
   {
-    title: 'Sistemas para a indústria',
+    title: 'Sistemas desktop',
     description:
-      'A experiência prática em ambiente industrial me ajuda a entender processos operacionais e o que um sistema de gestão precisa resolver.',
-    technologies: ['Java', 'Spring Boot', 'Thymeleaf'],
+      'Aplicações em Java para rodar no computador da empresa, ideais para controles internos do dia a dia.',
+    technologies: ['Java'],
   },
 ]

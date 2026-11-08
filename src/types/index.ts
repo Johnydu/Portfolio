@@ -40,6 +40,11 @@ export interface FocusArea {
   title: string
   description: string
   technologies: readonly string[]
+  /** Projeto real que serve de exemplo do serviço. */
+  example?: {
+    label: string
+    href: string
+  }
 }
 
 export interface TimelineItem {

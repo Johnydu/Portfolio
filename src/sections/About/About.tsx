@@ -1,5 +1,5 @@
 import { Section } from '../../components/layout'
-import { SectionTitle, Tag } from '../../components/ui'
+import { Button, SectionTitle, Tag } from '../../components/ui'
 import { focusAreas } from '../../data/focusAreas'
 import { profile } from '../../data/profile'
 import styles from './About.module.css'
@@ -30,6 +30,9 @@ export function About() {
         <h3 id="titulo-o-que-faco" className={styles.focusTitle}>
           O que faço
         </h3>
+        <p className={styles.focusIntro}>
+          Para empresas, profissionais e projetos freelance:
+        </p>
         <ul className={styles.focusList} aria-labelledby="titulo-o-que-faco">
           {focusAreas.map((area, index) => (
             <li key={area.title} className={styles.focusItem}>
@@ -45,9 +48,25 @@ export function About() {
                   </li>
                 ))}
               </ul>
+              {area.example && (
+                <a
+                  className={styles.focusExample}
+                  href={area.example.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Ver exemplo: {area.example.label}
+                  <span className={styles.srOnly}> (abre em nova aba)</span>
+                </a>
+              )}
             </li>
           ))}
         </ul>
+        <div className={styles.focusCta}>
+          <Button href={profile.links.linkedin} external variant="primary">
+            Pedir orçamento pelo LinkedIn
+          </Button>
+        </div>
       </div>
       <div className={styles.ai}>
         <h3 className={styles.aiTitle}>IA aplicada ao desenvolvimento</h3>
