@@ -86,7 +86,7 @@ export function ProjectShowcase({ project }: { project: Project }) {
           </Button>
           {project.demoUrl && (
             <Button href={project.demoUrl} external variant="primary">
-              Demonstração
+              Ver página
               <span className={styles.srOnly}> do projeto {project.title}</span>
             </Button>
           )}

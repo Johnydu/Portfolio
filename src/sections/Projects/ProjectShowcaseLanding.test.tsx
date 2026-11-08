@@ -26,6 +26,20 @@ describe('Vitrine da landing-page', () => {
     expect(within(landing).queryByText('Projeto em destaque')).toBeNull()
   })
 
+  it('tem link para a página publicada no GitHub Pages, em nova aba', () => {
+    render(<Projects />)
+    const [, landing] = screen.getAllByRole('article')
+    const demo = within(landing).getByRole('link', {
+      name: /Ver página\s*do projeto landing-page/,
+    })
+    expect(demo).toHaveAttribute(
+      'href',
+      'https://johnydu.github.io/landing-page/',
+    )
+    expect(demo).toHaveAttribute('target', '_blank')
+    expect(demo).toHaveAttribute('rel', 'noopener noreferrer')
+  })
+
   it('o LumiFlow continua com o selo de destaque', () => {
     render(<Projects />)
     const [lumiflow] = screen.getAllByRole('article')

@@ -47,6 +47,7 @@ export const projects: readonly Project[] = [
       'Landing page responsiva para divulgação de uma academia de karatê, desenvolvida com HTML5 e CSS3.',
     technologies: ['HTML5', 'CSS3'],
     repoUrl: 'https://github.com/Johnydu/landing-page',
+    demoUrl: 'https://johnydu.github.io/landing-page/',
     showcase: {
       media: {
         src: landingMedia,
