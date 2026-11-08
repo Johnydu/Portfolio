@@ -6,12 +6,21 @@ import { projects } from './projects'
 import { skills } from './skills'
 
 describe('dados do portfólio', () => {
-  it('todo projeto tem repoUrl https e ao menos uma tecnologia', () => {
+  it('todo projeto tem ao menos uma tecnologia e, se tiver repoUrl, ela é https', () => {
     expect(projects.length).toBeGreaterThan(0)
     for (const project of projects) {
-      expect(isHttpsUrl(project.repoUrl)).toBe(true)
+      if (project.repoUrl) expect(isHttpsUrl(project.repoUrl)).toBe(true)
       expect(project.technologies.length).toBeGreaterThan(0)
     }
+  })
+
+  it('o LumiFlow é um produto comercial e não aponta para o código privado', () => {
+    const lumiflow = projects.find((project) => project.title === 'LumiFlow')
+    expect(lumiflow?.commercial).toBe(true)
+    expect(lumiflow?.repoUrl).toBeUndefined()
+    expect(JSON.stringify(projects)).not.toContain(
+      'github.com/Johnydu/LumiFlow',
+    )
   })
 
   it('todo link externo usa https', () => {
@@ -19,7 +28,7 @@ describe('dados do portfólio', () => {
       ...Object.values(profile.links),
       ...(profile.resumeUrl ? [profile.resumeUrl] : []),
       ...projects.flatMap((p) => [
-        p.repoUrl,
+        ...(p.repoUrl ? [p.repoUrl] : []),
         ...(p.demoUrl ? [p.demoUrl] : []),
       ]),
     ]

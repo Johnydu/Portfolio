@@ -28,7 +28,10 @@ export interface Project {
   title: string
   description: string
   technologies: readonly string[]
-  repoUrl: string
+  /** Código público no GitHub. Produtos comerciais não têm. */
+  repoUrl?: string
+  /** Produto comercial: sem link de código, com pedido de demonstração. */
+  commercial?: boolean
   demoUrl?: string
   featured?: boolean
   highlights?: readonly string[]

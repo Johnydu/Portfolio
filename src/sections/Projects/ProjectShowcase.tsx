@@ -1,4 +1,5 @@
 import { Button, Tag } from '../../components/ui'
+import { profile } from '../../data/profile'
 import type { Project } from '../../types'
 import styles from './ProjectShowcase.module.css'
 
@@ -43,8 +44,15 @@ export function ProjectShowcase({ project }: { project: Project }) {
         </figure>
       )}
       <div className={styles.body}>
-        {project.featured && (
-          <p className={styles.eyebrow}>Projeto em destaque</p>
+        {(project.featured || project.commercial) && (
+          <div className={styles.labels}>
+            {project.featured && (
+              <p className={styles.eyebrow}>Projeto em destaque</p>
+            )}
+            {project.commercial && (
+              <p className={styles.badge}>Produto comercial</p>
+            )}
+          </div>
         )}
         <div className={styles.brand}>
           {logo && (
@@ -76,14 +84,22 @@ export function ProjectShowcase({ project }: { project: Project }) {
           ))}
         </ul>
         <div className={styles.actions}>
-          <Button
-            href={project.repoUrl}
-            external
-            variant={project.featured ? 'primary' : 'secondary'}
-          >
-            Repositório
-            <span className={styles.srOnly}> do projeto {project.title}</span>
-          </Button>
+          {project.commercial && (
+            <Button href={profile.links.linkedin} external variant="primary">
+              Solicitar demonstração
+              <span className={styles.srOnly}> do {project.title}</span>
+            </Button>
+          )}
+          {project.repoUrl && (
+            <Button
+              href={project.repoUrl}
+              external
+              variant={project.featured ? 'primary' : 'secondary'}
+            >
+              Repositório
+              <span className={styles.srOnly}> do projeto {project.title}</span>
+            </Button>
+          )}
           {project.demoUrl && (
             <Button href={project.demoUrl} external variant="primary">
               Ver página

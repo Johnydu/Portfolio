@@ -29,7 +29,7 @@ export const projects: readonly Project[] = [
       'Ordens de produção e acompanhamento das etapas',
       'Registros e histórico das operações',
     ],
-    repoUrl: 'https://github.com/Johnydu/LumiFlow',
+    commercial: true,
     featured: true,
     showcase: {
       logo: {

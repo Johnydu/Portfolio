@@ -22,10 +22,12 @@ export function ProjectCard({ project }: { project: Project }) {
         ))}
       </ul>
       <div className={styles.actions}>
-        <Button href={project.repoUrl} external variant="secondary">
-          Repositório
-          <span className={styles.srOnly}> do projeto {project.title}</span>
-        </Button>
+        {project.repoUrl && (
+          <Button href={project.repoUrl} external variant="secondary">
+            Repositório
+            <span className={styles.srOnly}> do projeto {project.title}</span>
+          </Button>
+        )}
         {project.demoUrl && (
           <Button href={project.demoUrl} external variant="primary">
             Demonstração

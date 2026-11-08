@@ -1,6 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 import { axe } from 'vitest-axe'
 import { describe, expect, it } from 'vitest'
+import { profile } from '../../data/profile'
 import { projects } from '../../data/projects'
 import type { Project } from '../../types'
 import { ProjectShowcase } from './ProjectShowcase'
@@ -40,12 +41,18 @@ describe('ProjectShowcase', () => {
     )
   })
 
-  it('leva ao repositório em nova aba, com o nome do projeto para o leitor de tela', () => {
+  it('é apresentado como produto comercial, sem link para o código', () => {
+    render(<ProjectShowcase project={featured} />)
+    expect(screen.getByText('Produto comercial')).toBeInTheDocument()
+    expect(screen.queryByRole('link', { name: /Repositório/ })).toBeNull()
+  })
+
+  it('convida a solicitar uma demonstração pelo LinkedIn, em nova aba', () => {
     render(<ProjectShowcase project={featured} />)
     const link = screen.getByRole('link', {
-      name: /Repositório\s*do projeto LumiFlow/,
+      name: /Solicitar demonstração\s*do LumiFlow/,
     })
-    expect(link).toHaveAttribute('href', 'https://github.com/Johnydu/LumiFlow')
+    expect(link).toHaveAttribute('href', profile.links.linkedin)
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')
   })

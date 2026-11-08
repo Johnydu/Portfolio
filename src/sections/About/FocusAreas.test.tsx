@@ -38,6 +38,8 @@ describe('focusAreas', () => {
       ]),
       // o próprio portfólio, cujo código é público
       'https://github.com/Johnydu/Portfolio',
+      // a vitrine do LumiFlow, produto comercial, dentro do próprio site
+      '#projetos',
     ])
     const examples = focusAreas.flatMap((area) =>
       area.example ? [area.example] : [],
@@ -71,6 +73,16 @@ describe('About com O que faço', () => {
     )
     expect(landing).toHaveAttribute('target', '_blank')
     expect(landing).toHaveAttribute('rel', 'noopener noreferrer')
+  })
+
+  it('o exemplo de sistemas web leva à vitrine do LumiFlow, na mesma aba', () => {
+    render(<About />)
+    const list = screen.getByRole('list', { name: 'O que faço' })
+    const lumiflow = within(list).getByRole('link', {
+      name: /Ver exemplo:\s*LumiFlow/,
+    })
+    expect(lumiflow).toHaveAttribute('href', '#projetos')
+    expect(lumiflow).not.toHaveAttribute('target')
   })
 
   it('convida a pedir orçamento pelo LinkedIn', () => {

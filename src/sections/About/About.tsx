@@ -48,17 +48,22 @@ export function About() {
                   </li>
                 ))}
               </ul>
-              {area.example && (
-                <a
-                  className={styles.focusExample}
-                  href={area.example.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Ver exemplo: {area.example.label}
-                  <span className={styles.srOnly}> (abre em nova aba)</span>
-                </a>
-              )}
+              {area.example &&
+                (area.example.href.startsWith('#') ? (
+                  <a className={styles.focusExample} href={area.example.href}>
+                    Ver exemplo: {area.example.label}
+                  </a>
+                ) : (
+                  <a
+                    className={styles.focusExample}
+                    href={area.example.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ver exemplo: {area.example.label}
+                    <span className={styles.srOnly}> (abre em nova aba)</span>
+                  </a>
+                ))}
             </li>
           ))}
         </ul>

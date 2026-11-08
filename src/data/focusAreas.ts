@@ -34,7 +34,7 @@ export const focusAreas: readonly FocusArea[] = [
     technologies: ['Java', 'Spring Boot', 'Spring Security', 'PostgreSQL'],
     example: {
       label: 'LumiFlow, gestão da produção industrial',
-      href: 'https://github.com/Johnydu/LumiFlow',
+      href: '#projetos',
     },
   },
   {
