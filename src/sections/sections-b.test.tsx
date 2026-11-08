@@ -18,10 +18,10 @@ describe('Projects', () => {
     )
   })
 
-  it('mostra o LumiFlow em destaque, sem link de código, e a landing-page como secundária', () => {
+  it('mostra o LumiFlow em destaque, sem link de código, e a landing-page e o convite como secundários', () => {
     render(<Projects />)
     const cards = screen.getAllByRole('article')
-    expect(cards).toHaveLength(2)
+    expect(cards).toHaveLength(3)
 
     const [lumiflow, landing] = cards
     expect(
