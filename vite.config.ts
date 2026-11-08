@@ -1,6 +1,10 @@
 import react from '@vitejs/plugin-react'
 import { loadEnv } from 'vite'
 import { defineConfig } from 'vitest/config'
+import {
+  basePathFromSiteUrl,
+  securityMetaPlugin,
+} from './config/githubPages.ts'
 import { resolveSiteUrl, siteUrlPlugin } from './config/siteUrl.ts'
 
 export default defineConfig(({ command, mode }) => {
@@ -8,7 +12,9 @@ export default defineConfig(({ command, mode }) => {
   const siteUrl = resolveSiteUrl(command, env.VITE_SITE_URL)
 
   return {
-    plugins: [react(), siteUrlPlugin(siteUrl)],
+    // No GitHub Pages o site vive em /Portfolio/; o caminho vem da URL pública.
+    base: command === 'build' ? basePathFromSiteUrl(siteUrl) : '/',
+    plugins: [react(), siteUrlPlugin(siteUrl), securityMetaPlugin()],
     build: {
       assetsInlineLimit: 0,
     },

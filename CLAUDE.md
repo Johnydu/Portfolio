@@ -9,7 +9,7 @@ Regras do projeto para sessões do Claude Code. A especificação completa está
 Portfólio profissional de Johny Duarte (Desenvolvedor Backend Java) para
 conseguir vaga de desenvolvedor e trabalhos freelance. Público: recrutadores e
 empresas de TI, e empresas do setor industrial. É uma SPA estática (Vite +
-React + TypeScript) servida por nginx em container no Railway. Não há back-end.
+React + TypeScript) publicada no GitHub Pages. Não há back-end.
 
 ## Comandos
 
@@ -19,7 +19,7 @@ React + TypeScript) servida por nginx em container no Railway. Não há back-end
 - `npm run lint` — ESLint
 - `npm run format` — Prettier
 - `VITE_SITE_URL=https://exemplo.test npm run build` — build de produção
-- `docker build --build-arg VITE_SITE_URL=https://exemplo.test -t portfolio .`
+- `npx vite preview --base /Portfolio/` — ver o build como no GitHub Pages
 
 ## Estrutura
 
@@ -63,4 +63,5 @@ projeto, edite apenas `src/data/projects.ts`.
 
 - Commits em Conventional Commits, com descrição em português
   (`feat:`, `fix:`, `docs:`, `chore:`, `test:`).
-- Deploy automático no Railway a cada push na `main`.
+- Deploy automático no GitHub Pages a cada push na `main`
+  (`.github/workflows/pages.yml`), em https://johnydu.github.io/Portfolio/.

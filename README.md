@@ -14,7 +14,7 @@ desenvolvedor backend Java quanto projetos freelance.
 - Fontes servidas pelo próprio site (`@fontsource`), sem CDN
 - Vitest + Testing Library + vitest-axe (testes e acessibilidade)
 - ESLint + Prettier
-- Docker (build em duas etapas) + nginx, publicado no Railway
+- Publicado no GitHub Pages pelo GitHub Actions
 
 É uma SPA estática: não há back-end, rotas nem formulário.
 
@@ -56,43 +56,38 @@ npm run preview
 
 O build falha se `VITE_SITE_URL` não for informada ou não for uma URL `https`.
 
-## Container
-
-```bash
-docker build --build-arg VITE_SITE_URL=https://seu-dominio.exemplo -t portfolio .
-docker run --rm -e PORT=8080 -p 8080:8080 portfolio
-```
-
-O nginx escuta na porta definida em `PORT` (padrão `8080`). Para validar a
-imagem (cabeçalhos de segurança, cache, gzip e fallback da SPA):
-
-```bash
-scripts/verify-container.sh
-```
-
 ## Variáveis de ambiente
 
-| Variável        | Quando           | Descrição                                                               |
-| --------------- | ---------------- | ----------------------------------------------------------------------- |
-| `VITE_SITE_URL` | build            | URL pública `https` do site, usada em canonical, Open Graph e og:image. |
-| `PORT`          | execução (nginx) | Porta em que o nginx escuta. O Railway define automaticamente.          |
+| Variável        | Quando | Descrição                                                                                                        |
+| --------------- | ------ | ---------------------------------------------------------------------------------------------------------------- |
+| `VITE_SITE_URL` | build  | URL pública `https` do site. Define canonical, Open Graph e og:image, e o caminho base (`/Portfolio/`) do build. |
 
-## Publicação no Railway
+## Publicação no GitHub Pages
 
-1. Crie um serviço no Railway a partir deste repositório. O `railway.json` da
-   raiz define o build pelo `Dockerfile`, o healthcheck em `/` e a política de
-   reinício.
-2. Em **Variables**, defina `VITE_SITE_URL` com o domínio do serviço (ex.: `https://portfolio-production.up.railway.app`).
-3. Gere o domínio público em **Settings → Networking**.
-4. A cada push na `main` o Railway faz o deploy automaticamente.
+O site está em **https://johnydu.github.io/Portfolio/**.
 
-Se o domínio mudar, atualize `VITE_SITE_URL` e refaça o deploy, pois o valor é
-embutido no build.
+1. Em **Settings → Pages**, a origem (_Source_) é **GitHub Actions**.
+2. A cada push na `main`, o workflow `.github/workflows/pages.yml` roda lint,
+   testes e build com `VITE_SITE_URL=https://johnydu.github.io/Portfolio` e
+   publica a pasta `dist/`.
+3. Também dá para publicar manualmente em **Actions → Publicar no GitHub Pages
+   → Run workflow**.
+
+Para ver localmente o build como no GitHub Pages:
+
+```bash
+VITE_SITE_URL=https://johnydu.github.io/Portfolio npm run build
+npx vite preview --base /Portfolio/
+```
+
+Se o endereço mudar, atualize `VITE_SITE_URL` no workflow: o caminho base sai
+dessa URL.
 
 ## Qualidade
 
 - HTML semântico, navegação por teclado e contraste WCAG AA (verificado em teste).
-- Política de segurança de conteúdo `default-src 'self'` aplicada pelo nginx.
+- Política de segurança de conteúdo `default-src 'self'` numa `<meta>` inserida no build
+  (o GitHub Pages não permite cabeçalhos HTTP próprios).
 - Animação limitada a um _fade-in_ sutil, desativado com `prefers-reduced-motion`.
 - Lighthouse local: 100 em Performance, Acessibilidade, Boas práticas e SEO.
 - CI no GitHub Actions: lint, testes e build a cada push e pull request.

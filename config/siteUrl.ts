@@ -14,7 +14,7 @@ export function resolveSiteUrl(
     if (!url || !isHttpsUrl(url)) {
       throw new Error(
         'VITE_SITE_URL é obrigatória no build e deve ser uma URL https. ' +
-          'Exemplo: VITE_SITE_URL=https://seu-servico.up.railway.app',
+          'Exemplo: VITE_SITE_URL=https://johnydu.github.io/Portfolio',
       )
     }
     return url.replace(/\/+$/, '')
