@@ -1,3 +1,4 @@
+import contactPhotoSrc from '../assets/johny-duarte-contato.webp'
 import aboutPhotoSrc from '../assets/johny-duarte-lendo.webp'
 import photoSrc from '../assets/johny-duarte.webp'
 import type { Profile } from '../types'
@@ -13,6 +14,12 @@ export const profile: Profile = {
     alt: 'Foto de Johny Duarte, de óculos e blusa preta de gola alta, com os braços cruzados',
     width: 800,
     height: 800,
+  },
+  contactPhoto: {
+    src: contactPhotoSrc,
+    alt: 'Johny Duarte sorrindo, de óculos escuros e blazer claro, num terraço com a cidade ao entardecer ao fundo',
+    width: 800,
+    height: 1013,
   },
   aboutPhoto: {
     src: aboutPhotoSrc,

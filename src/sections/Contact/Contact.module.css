@@ -10,3 +10,41 @@
   gap: var(--space-3);
   margin-top: var(--space-6);
 }
+
+/* Foto à esquerda do convite no desktop; acima dele no celular. */
+.layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  align-items: center;
+}
+
+@media (min-width: 56rem) {
+  .layout {
+    grid-template-columns: 16rem minmax(0, 1fr);
+    gap: var(--space-10);
+  }
+}
+
+.photoFrame {
+  max-width: 24rem;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+  aspect-ratio: 3 / 4;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+.content {
+  min-width: 0;
+}

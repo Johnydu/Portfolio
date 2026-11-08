@@ -17,9 +17,9 @@ export function Projects() {
         {projects.map((project) => (
           <div
             key={project.title}
-            className={project.featured ? styles.featured : undefined}
+            className={project.showcase ? styles.featured : undefined}
           >
-            {project.featured && project.showcase ? (
+            {project.showcase ? (
               <ProjectShowcase project={project} />
             ) : (
               <ProjectCard project={project} />
