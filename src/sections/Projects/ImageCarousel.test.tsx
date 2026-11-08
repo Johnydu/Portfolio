@@ -86,4 +86,70 @@ describe('ImageCarousel', () => {
     expect(animation).toBeGreaterThan(reduced)
     expect(css).toMatch(/@keyframes\s+\w+/)
   })
+
+  describe('visualizador ampliado', () => {
+    it('a imagem é um botão que abre a versão ampliada', async () => {
+      const user = userEvent.setup()
+      render(<ImageCarousel images={images} label="Imagens do LumiFlow" />)
+      expect(screen.queryByRole('dialog')).toBeNull()
+      await user.click(
+        screen.getByRole('button', { name: 'Ampliar imagem 1 de 3' }),
+      )
+      const dialog = screen.getByRole('dialog', { name: 'Imagem ampliada' })
+      expect(
+        within(dialog).getByRole('img', { name: 'Primeira tela' }),
+      ).toBeInTheDocument()
+      expect(
+        within(dialog).getByRole('button', { name: 'Fechar' }),
+      ).toHaveFocus()
+    })
+
+    it('fecha pelo botão Fechar e devolve o foco à imagem', async () => {
+      const user = userEvent.setup()
+      render(<ImageCarousel images={images} label="Imagens do LumiFlow" />)
+      const zoom = screen.getByRole('button', { name: 'Ampliar imagem 1 de 3' })
+      await user.click(zoom)
+      await user.click(screen.getByRole('button', { name: 'Fechar' }))
+      expect(screen.queryByRole('dialog')).toBeNull()
+      expect(zoom).toHaveFocus()
+    })
+
+    it('fecha com Esc', async () => {
+      const user = userEvent.setup()
+      render(<ImageCarousel images={images} label="Imagens do LumiFlow" />)
+      await user.click(
+        screen.getByRole('button', { name: 'Ampliar imagem 1 de 3' }),
+      )
+      await user.keyboard('{Escape}')
+      expect(screen.queryByRole('dialog')).toBeNull()
+    })
+
+    it('as setas do visualizador passam as imagens junto com o carrossel', async () => {
+      const user = userEvent.setup()
+      render(<ImageCarousel images={images} label="Imagens do LumiFlow" />)
+      await user.click(
+        screen.getByRole('button', { name: 'Ampliar imagem 1 de 3' }),
+      )
+      const dialog = screen.getByRole('dialog', { name: 'Imagem ampliada' })
+      await user.click(
+        within(dialog).getByRole('button', { name: 'Próxima imagem' }),
+      )
+      expect(
+        within(dialog).getByRole('img', { name: 'Segunda tela' }),
+      ).toBeInTheDocument()
+      await user.click(within(dialog).getByRole('button', { name: 'Fechar' }))
+      expect(screen.getByText('2 de 3')).toBeInTheDocument()
+    })
+
+    it('aberto, não tem violações de acessibilidade', async () => {
+      const user = userEvent.setup()
+      const { container } = render(
+        <ImageCarousel images={images} label="Imagens do LumiFlow" />,
+      )
+      await user.click(
+        screen.getByRole('button', { name: 'Ampliar imagem 1 de 3' }),
+      )
+      expect(await axe(container)).toHaveNoViolations()
+    })
+  })
 })

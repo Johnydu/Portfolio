@@ -44,7 +44,7 @@ export const projects: readonly Project[] = [
       gallery: [
         {
           src: lumiflowCover,
-          alt: 'Capa do LumiFlow: o logo do sistema sobre uma fábrica escura, com uma onda de pontos ciano.',
+          alt: 'Capa do LumiFlow: tela de entrada do sistema com o logo, “Gestão inteligente de produção” e as funções Controle de Produção, Rastreabilidade, Indicadores em Tempo Real, Gestão de Operadores e Controle de Refugos e Retrabalhos.',
           width: 800,
           height: 1000,
         },
