@@ -50,11 +50,10 @@ export const projects: readonly Project[] = [
     showcase: {
       media: {
         src: landingMedia,
-        alt: 'Captura da tela inicial da landing page Bushido Karatê, com o título “Disciplina que transforma vidas.”',
+        alt: 'Captura da tela inicial da landing page Bushido Karatê, com o título “Disciplina que transforma vidas.” e um ensō vermelho em volta de 空手道',
         width: 1200,
-        height: 598,
+        height: 660,
       },
-      focus: 'start',
     },
   },
 ]

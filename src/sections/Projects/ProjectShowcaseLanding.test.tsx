@@ -5,7 +5,7 @@ import { projects } from '../../data/projects'
 import { Projects } from './Projects'
 
 const LANDING_ALT =
-  'Captura da tela inicial da landing page Bushido Karatê, com o título “Disciplina que transforma vidas.”'
+  'Captura da tela inicial da landing page Bushido Karatê, com o título “Disciplina que transforma vidas.” e um ensō vermelho em volta de 空手道'
 
 describe('Vitrine da landing-page', () => {
   it('a landing-page tem banner com a captura real e sem logo', () => {
