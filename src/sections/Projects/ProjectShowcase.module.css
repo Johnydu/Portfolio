@@ -154,3 +154,30 @@
   letter-spacing: 0.04em;
   line-height: 1.4;
 }
+
+/* Invólucro interno: a @container query só alcança o que está dentro da vitrine. */
+.layout {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Com galeria: carrossel vertical (4:5) e texto lado a lado na vitrine larga. */
+.withGallery .layout {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.gallery {
+  padding: var(--space-6) var(--space-6) 0;
+}
+
+@container (min-width: 44rem) {
+  .withGallery .layout {
+    grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+    align-items: center;
+  }
+
+  .gallery {
+    padding: var(--space-8) 0 var(--space-8) var(--space-8);
+  }
+}

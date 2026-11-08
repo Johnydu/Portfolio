@@ -10,7 +10,7 @@ const LANDING_ALT =
 describe('Vitrine da landing-page', () => {
   it('a landing-page tem banner com a captura real e sem logo', () => {
     const landing = projects.find((p) => p.title === 'landing-page')
-    expect(landing?.showcase?.media.alt).toBe(LANDING_ALT)
+    expect(landing?.showcase?.media?.alt).toBe(LANDING_ALT)
     expect(landing?.showcase?.logo).toBeUndefined()
     expect(landing?.featured).toBeFalsy()
   })

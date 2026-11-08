@@ -19,9 +19,14 @@ export interface ProjectShowcase {
    * Imagem do banner. Use alt vazio quando for decorativa (fundo com logo);
    * descreva-a quando for uma captura de tela do projeto.
    */
-  media: ProjectImage
+  media?: ProjectImage
   /** Lado da imagem que fica visível quando o banner corta. Padrão: center. */
   focus?: 'center' | 'start'
+  /**
+   * Imagens reais do projeto em carrossel (ex.: posts do LinkedIn, 4:5).
+   * Com galeria, a vitrine fica em duas colunas e não usa o banner.
+   */
+  gallery?: readonly ProjectImage[]
 }
 
 export interface Project {

@@ -25,12 +25,11 @@ describe('ProjectShowcase', () => {
     expect(within(article).getByText('Projeto em destaque')).toBeInTheDocument()
   })
 
-  it('mostra o logo com texto alternativo e a imagem de fundo como decorativa', () => {
+  it('mostra o logo ao lado do título, com texto alternativo, sem banner decorativo', () => {
     const { container } = render(<ProjectShowcase project={featured} />)
-    expect(screen.getByRole('img', { name: 'Logo do LumiFlow' })).toBeVisible()
-    const media = container.querySelector('figure img[alt=""]')
-    expect(media).not.toBeNull()
-    expect(media).toHaveAttribute('loading', 'lazy')
+    const logo = screen.getByRole('img', { name: 'Logo do LumiFlow' })
+    expect(logo.closest('figure')).toBeNull()
+    expect(container.querySelector('figure img[alt=""]')).toBeNull()
   })
 
   it('lista os destaques e as tecnologias', () => {
@@ -55,6 +54,19 @@ describe('ProjectShowcase', () => {
     expect(link).toHaveAttribute('href', profile.links.linkedin)
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+  })
+
+  it('mostra os posts reais do LumiFlow num carrossel com setas', () => {
+    render(<ProjectShowcase project={featured} />)
+    const carousel = screen.getByRole('group', { name: 'Imagens do LumiFlow' })
+    expect(
+      within(carousel).getByRole('button', { name: 'Próxima imagem' }),
+    ).toBeInTheDocument()
+    const alts = within(carousel)
+      .getAllByRole('img', { hidden: true })
+      .map((img) => img.getAttribute('alt'))
+    expect(alts).toHaveLength(3)
+    expect(alts[0]).toMatch(/Onde está cada ordem de produção agora/)
   })
 
   it('não tem violações de acessibilidade', async () => {

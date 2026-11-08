@@ -1,6 +1,8 @@
 import landingMedia from '../assets/landing-page/hero.webp'
-import lumiflowMedia from '../assets/lumiflow/fundo.webp'
 import lumiflowLogo from '../assets/lumiflow/logo.webp'
+import lumiflowPost1 from '../assets/lumiflow/posts/post1.webp'
+import lumiflowPost2 from '../assets/lumiflow/posts/post2.webp'
+import lumiflowPost3 from '../assets/lumiflow/posts/post3.webp'
 import type { Project } from '../types'
 
 export const projects: readonly Project[] = [
@@ -38,7 +40,26 @@ export const projects: readonly Project[] = [
         width: 384,
         height: 367,
       },
-      media: { src: lumiflowMedia, alt: '', width: 1200, height: 800 },
+      gallery: [
+        {
+          src: lumiflowPost1,
+          alt: 'Post do LumiFlow: “Onde está cada ordem de produção agora?”, com o painel de ordens mostrando etapas ativas, em andamento, concluídas hoje e refugo.',
+          width: 800,
+          height: 1000,
+        },
+        {
+          src: lumiflowPost2,
+          alt: 'Post do LumiFlow: “Toda peça com defeito tem origem, responsável e destino.”, com o lançamento de refugo de uma ordem e o histórico de refugo e retrabalho.',
+          width: 800,
+          height: 1000,
+        },
+        {
+          src: lumiflowPost3,
+          alt: 'Post do LumiFlow: “Quem fez, em qual máquina e quando.”, com o roteiro de produção da ordem e as quantidades por setor.',
+          width: 800,
+          height: 1000,
+        },
+      ],
     },
   },
   {
