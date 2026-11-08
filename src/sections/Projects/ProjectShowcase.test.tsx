@@ -65,8 +65,9 @@ describe('ProjectShowcase', () => {
     const alts = within(carousel)
       .getAllByRole('img', { hidden: true })
       .map((img) => img.getAttribute('alt'))
-    expect(alts).toHaveLength(3)
-    expect(alts[0]).toMatch(/Onde está cada ordem de produção agora/)
+    expect(alts).toHaveLength(4)
+    expect(alts[0]).toMatch(/^Capa do LumiFlow/)
+    expect(alts[1]).toMatch(/Onde está cada ordem de produção agora/)
   })
 
   it('não tem violações de acessibilidade', async () => {

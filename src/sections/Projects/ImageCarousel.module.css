@@ -21,6 +21,23 @@
   display: none;
 }
 
+/* A imagem que entra aparece com um fade; sem animação para quem pede menos movimento. */
+@media (prefers-reduced-motion: no-preference) {
+  .slide:not([hidden]) {
+    animation: slide-fade 400ms ease;
+  }
+}
+
+@keyframes slide-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
 .image {
   display: block;
   width: 100%;

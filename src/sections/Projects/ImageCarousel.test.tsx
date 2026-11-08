@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe } from 'vitest-axe'
@@ -70,5 +71,19 @@ describe('ImageCarousel', () => {
       expect(img).toHaveAttribute('loading', 'lazy')
     }
     expect(await axe(container)).toHaveNoViolations()
+  })
+
+  it('a troca de imagem tem um fade, desligado com prefers-reduced-motion', () => {
+    const css = readFileSync(
+      'src/sections/Projects/ImageCarousel.module.css',
+      'utf8',
+    )
+    const reduced = css.indexOf(
+      '@media (prefers-reduced-motion: no-preference)',
+    )
+    expect(reduced).toBeGreaterThan(-1)
+    const animation = css.indexOf('animation:')
+    expect(animation).toBeGreaterThan(reduced)
+    expect(css).toMatch(/@keyframes\s+\w+/)
   })
 })

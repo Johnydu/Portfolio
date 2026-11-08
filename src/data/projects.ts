@@ -1,5 +1,6 @@
 import landingMedia from '../assets/landing-page/hero.webp'
 import lumiflowLogo from '../assets/lumiflow/logo.webp'
+import lumiflowCover from '../assets/lumiflow/posts/capa.webp'
 import lumiflowPost1 from '../assets/lumiflow/posts/post1.webp'
 import lumiflowPost2 from '../assets/lumiflow/posts/post2.webp'
 import lumiflowPost3 from '../assets/lumiflow/posts/post3.webp'
@@ -41,6 +42,12 @@ export const projects: readonly Project[] = [
         height: 367,
       },
       gallery: [
+        {
+          src: lumiflowCover,
+          alt: 'Capa do LumiFlow: o logo do sistema sobre uma fábrica escura, com uma onda de pontos ciano.',
+          width: 800,
+          height: 1000,
+        },
         {
           src: lumiflowPost1,
           alt: 'Post do LumiFlow: “Onde está cada ordem de produção agora?”, com o painel de ordens mostrando etapas ativas, em andamento, concluídas hoje e refugo.',
