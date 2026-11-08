@@ -63,4 +63,11 @@ export interface Profile {
     instagram: string
   }
   resumeUrl?: string
+  /** Foto espontânea da seção Sobre mim. */
+  aboutPhoto: {
+    src: string
+    alt: string
+    width: number
+    height: number
+  }
 }

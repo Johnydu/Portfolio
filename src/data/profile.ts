@@ -1,3 +1,4 @@
+import aboutPhotoSrc from '../assets/johny-duarte-lendo.webp'
 import photoSrc from '../assets/johny-duarte.webp'
 import type { Profile } from '../types'
 
@@ -12,6 +13,12 @@ export const profile: Profile = {
     alt: 'Foto de Johny Duarte, de óculos e blusa preta de gola alta, com os braços cruzados',
     width: 800,
     height: 800,
+  },
+  aboutPhoto: {
+    src: aboutPhotoSrc,
+    alt: 'Johny Duarte lendo um livro com uma xícara de café, com o notebook aberto ao fundo',
+    width: 800,
+    height: 1071,
   },
   about: [
     'Sou estudante de Análise e Desenvolvimento de Sistemas e desenvolvedor com foco em Java e desenvolvimento backend. Tenho interesse em construir aplicações bem estruturadas, APIs REST e sistemas que resolvam problemas reais de negócio.',

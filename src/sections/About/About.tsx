@@ -8,10 +8,23 @@ export function About() {
   return (
     <Section id="sobre" titleId="titulo-sobre">
       <SectionTitle label="01 / sobre" title="Sobre mim" id="titulo-sobre" />
-      <div className={styles.text}>
-        {profile.about.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+      <div className={styles.intro}>
+        <figure className={styles.photoFrame}>
+          <img
+            className={styles.photo}
+            src={profile.aboutPhoto.src}
+            alt={profile.aboutPhoto.alt}
+            width={profile.aboutPhoto.width}
+            height={profile.aboutPhoto.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div className={styles.text}>
+          {profile.about.map((paragraph) => (
+            <p key={paragraph}>{paragraph}</p>
+          ))}
+        </div>
       </div>
       <div className={styles.focus}>
         <h3 id="titulo-o-que-faco" className={styles.focusTitle}>
