@@ -20,6 +20,37 @@ body {
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decorativos: malha de planta técnica e brilho âmbar no fundo do topo */
+body::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto;
+  height: 40rem;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--color-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to bottom, black, transparent);
+}
+
+body::after {
+  content: '';
+  position: absolute;
+  top: -8rem;
+  right: 10%;
+  width: 28rem;
+  height: 20rem;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: var(--radius-full);
+  background: var(--color-glow);
+  filter: blur(96px);
 }
 
 h1,
@@ -27,6 +58,13 @@ h2,
 h3,
 p {
   margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
 }
 
 ul {
@@ -46,9 +84,18 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--color-accent-text);
+  outline: 2px solid var(--color-accent);
   outline-offset: 3px;
   border-radius: var(--radius-sm);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {

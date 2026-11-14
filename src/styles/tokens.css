@@ -2,19 +2,23 @@
   color-scheme: dark;
 
   /* Cores */
-  --color-bg: #0b0b0f;
-  --color-surface: #14141a;
-  --color-border: #23232c;
-  --color-text: #e8e8ee;
-  --color-text-muted: #a0a0b0;
-  --color-accent: #8b5cf6;
-  --color-accent-hover: #a78bfa;
-  --color-accent-text: #a78bfa;
-  --color-overlay: rgb(11 11 15 / 95%);
+  --color-bg: #141413;
+  --color-surface: #1c1c1a;
+  --color-border: #2c2c2a;
+  --color-text: #f1efe8;
+  --color-text-muted: #b4b2a9;
+  --color-accent: #ef9f27;
+  --color-accent-hover: #fac775;
+  --color-accent-text: #ef9f27;
+  --color-on-accent: #412402;
+  --color-grid: rgb(255 255 255 / 4%);
+  --color-glow: rgb(239 159 39 / 30%);
+  --color-overlay: rgb(20 20 19 / 95%);
 
   /* Tipografia */
   --font-sans:
     'Inter Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-display: 'Space Grotesk Variable', var(--font-sans);
   --font-mono:
     'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', monospace;
   --text-xs: 0.75rem;
