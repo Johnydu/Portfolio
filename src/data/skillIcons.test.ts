@@ -1,10 +1,11 @@
 import { describe, expect, it } from 'vitest'
 import * as simpleIcons from 'simple-icons'
+import type { SimpleIcon } from 'simple-icons'
 import { iconsBySlug, skillIcons } from './skillIcons'
 import { skills } from './skills'
 
 const all = Object.values(simpleIcons).filter(
-  (v): v is { slug: string; path: string } =>
+  (v): v is SimpleIcon =>
     typeof v === 'object' && v !== null && 'slug' in v && 'path' in v,
 )
 
