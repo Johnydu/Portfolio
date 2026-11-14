@@ -1,0 +1,20 @@
+.reveal {
+  opacity: 0;
+  transform: translateY(8px);
+  transition:
+    opacity 300ms ease,
+    transform 300ms ease;
+}
+
+/* "visible" é classe global: o estado final precisa ter um nome estável */
+.reveal:global(.visible) {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

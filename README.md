@@ -24,7 +24,7 @@ desenvolvedor backend Java quanto projetos freelance.
 src/
   data/                 conteúdo tipado (perfil, tecnologias, projetos, trajetória)
   types/                tipos do conteúdo
-  components/ui/        Button, Tag, Card, SectionTitle
+  components/ui/        Button, Tag, Card, SectionTitle, Reveal
   components/layout/    Header, Footer, Section
   sections/             Hero, About, Skills, Projects, Timeline, Contact
   styles/               tokens.css (Design System) e global.css
