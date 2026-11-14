@@ -114,15 +114,3 @@
     justify-self: end;
   }
 }
-
-/* Com o cartão de perfil ao lado, a foto do Hero sai para não se repetir. */
-@media (min-width: 64rem) {
-  .layout {
-    grid-template-columns: 1fr;
-    padding-top: var(--space-6);
-  }
-
-  .frame {
-    display: none;
-  }
-}
