@@ -26,3 +26,6 @@ dist-ssr
 # Variáveis de ambiente locais
 .env
 .env.local
+runs/
+.time/
+.claude/worktrees/
