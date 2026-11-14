@@ -85,7 +85,7 @@ describe('Skills', () => {
       )
       const items = within(list)
         .getAllByRole('listitem')
-        .map((item) => item.textContent)
+        .map((item) => item.querySelector('span:not([aria-hidden])')?.textContent)
       expect(items).toEqual([...group.items])
     }
   })

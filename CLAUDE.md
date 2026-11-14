@@ -23,9 +23,9 @@ React + TypeScript) publicada no GitHub Pages. Não há back-end.
 
 ## Estrutura
 
-- `src/data/` — todo o conteúdo (textos, projetos, tecnologias), tipado
+- `src/data/` — todo o conteúdo (textos, projetos, tecnologias e o mapa de logotipos `skillIcons.ts`), tipado
 - `src/types/` — tipos do conteúdo
-- `src/components/ui/` — Button, Tag, Card, SectionTitle, Reveal (entrada ao rolar), TerminalLine (linha de terminal digitada)
+- `src/components/ui/` — Button, Tag, Card, SectionTitle, Reveal (entrada ao rolar), TerminalLine (linha de terminal digitada), TechIcon (logotipo da tecnologia ou iniciais)
 - `src/components/layout/` — Header, Footer, Section
 - `src/sections/` — Hero, About, Skills, Projects, Timeline, Contact
 - `src/styles/` — `tokens.css` (Design System, grafite e âmbar) e `global.css` (malha e brilho de fundo)
