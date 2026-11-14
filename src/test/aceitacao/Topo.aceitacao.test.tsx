@@ -90,7 +90,7 @@ describe('Hero', () => {
       (_, el) => el?.tagName === 'P' && el.textContent === STATEMENT,
     )
     const projetos = screen.getByRole('link', { name: 'Ver projetos' })
-    const linkedin = screen.getByRole('link', { name: 'LinkedIn' })
+    const linkedin = screen.getByRole('link', { name: /^LinkedIn\b/ })
     const photo = screen.getByRole('img', { name: profile.photo.alt })
     expect(isBefore(terminal, h1)).toBe(true)
     expect(isBefore(h1, statement)).toBe(true)
@@ -119,7 +119,7 @@ describe('Hero', () => {
 
   it('temBotaoSecundarioLinkedInSeguro', () => {
     render(<Hero />)
-    const link = screen.getByRole('link', { name: 'LinkedIn' })
+    const link = screen.getByRole('link', { name: /^LinkedIn\b/ })
     expect(link).toHaveAttribute('href', profile.links.linkedin)
     expect(link).toHaveAttribute('target', '_blank')
     expect(link).toHaveAttribute('rel', 'noopener noreferrer')

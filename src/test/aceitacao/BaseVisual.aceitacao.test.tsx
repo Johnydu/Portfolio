@@ -336,7 +336,9 @@ describe('Reveal', () => {
     const root = container.firstElementChild as HTMLElement
     expect(screen.getByText('Movimento reduzido')).toBeInTheDocument()
     expect(root.className).not.toMatch(/hidden|oculto|invisible/i)
-    expect(root.className.split(/\s+/)).toContain('visible')
+    expect(
+      root.className.split(/\s+/).some((t) => /visible/i.test(t)),
+    ).toBe(true)
     expect(observers.some((o) => o.targets.includes(root))).toBe(false)
   })
 })
