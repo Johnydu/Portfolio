@@ -1,43 +1,63 @@
 /*
- * A imagem é um banner no topo da vitrine, ocupando toda a largura, e o
- * texto vem abaixo. Assim a proporção não depende da largura da coluna de
- * conteúdo (que fica estreita com o cartão de perfil ao lado).
+ * Vitrine em zigue-zague: a mídia ocupa um lado e o cartão de texto, grafite
+ * translúcido com borda âmbar, fica sobreposto do outro. No HTML o texto vem
+ * antes da mídia; a ordem visual é feita só pelas áreas do grid.
+ * No celular a mídia fica acima do cartão, sem sobreposição.
  */
 .showcase {
-  container-type: inline-size;
+  display: block;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'midia'
+    'corpo';
+  align-items: center;
+}
+
+/* Cartão de texto. Sem suporte a backdrop-filter, o fundo é opaco. */
+.body {
+  position: relative;
+  z-index: 1;
+  grid-area: corpo;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
+  gap: var(--space-4);
+  padding: var(--space-6);
+  border: 1px solid var(--color-accent);
   border-radius: var(--radius-lg);
   background: var(--color-surface);
-  box-shadow: var(--shadow-sm);
-  transition: border-color var(--transition);
-}
-
-.showcase:hover {
-  border-color: var(--color-accent);
-}
-
-/* Só o projeto em destaque tem borda violeta e sombra maior. */
-.featured {
-  border-color: var(--color-accent);
   box-shadow: var(--shadow-md);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .body {
+    background: color-mix(in srgb, var(--color-surface) 85%, transparent);
+    backdrop-filter: blur(8px);
+  }
+}
+
+.media,
+.gallery {
+  grid-area: midia;
+  min-width: 0;
 }
 
 .media {
   position: relative;
   margin: 0;
   overflow: hidden;
-  border-bottom: 1px solid var(--color-border);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
   background: var(--color-bg);
   aspect-ratio: 16 / 10;
 }
 
-@container (min-width: 36rem) {
-  .media {
-    aspect-ratio: 21 / 9;
-  }
+.gallery {
+  width: min(100%, 24rem);
+  justify-self: center;
 }
 
 .shot {
@@ -61,16 +81,49 @@
   margin: auto;
 }
 
-.body {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  padding: var(--space-6);
+/* Sem mídia nem galeria: o cartão ocupa a largura toda. */
+.semMidia .layout {
+  grid-template-areas: 'corpo';
 }
 
-@container (min-width: 36rem) {
+@media (min-width: 768px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-areas: 'midia corpo';
+  }
+
+  .withGallery .layout {
+    grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
+  }
+
+  .reverso .layout {
+    grid-template-areas: 'corpo midia';
+  }
+
+  .withGallery.reverso .layout {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 24rem);
+  }
+
+  .semMidia .layout,
+  .semMidia.reverso .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas: 'corpo';
+  }
+
   .body {
+    z-index: 2;
     padding: var(--space-8);
+    margin-inline-start: calc(-1 * var(--space-12));
+  }
+
+  .reverso .body {
+    margin-inline-start: 0;
+    margin-inline-end: calc(-1 * var(--space-12));
+  }
+
+  .semMidia .body,
+  .semMidia.reverso .body {
+    margin-inline: 0;
   }
 }
 
@@ -143,7 +196,7 @@
   gap: var(--space-2) var(--space-3);
 }
 
-/* Selo de produto comercial: contorno violeta, texto mono. */
+/* Selo de produto comercial: contorno âmbar, texto mono. */
 .badge {
   padding: var(--space-1) var(--space-3);
   border: 1px solid var(--color-accent);
@@ -153,31 +206,4 @@
   font-size: var(--text-xs);
   letter-spacing: 0.04em;
   line-height: 1.4;
-}
-
-/* Invólucro interno: a @container query só alcança o que está dentro da vitrine. */
-.layout {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Com galeria: carrossel vertical (4:5) e texto lado a lado na vitrine larga. */
-.withGallery .layout {
-  display: grid;
-  grid-template-columns: 1fr;
-}
-
-.gallery {
-  padding: var(--space-6) var(--space-6) 0;
-}
-
-@container (min-width: 44rem) {
-  .withGallery .layout {
-    grid-template-columns: minmax(0, 24rem) minmax(0, 1fr);
-    align-items: center;
-  }
-
-  .gallery {
-    padding: var(--space-8) 0 var(--space-8) var(--space-8);
-  }
 }
