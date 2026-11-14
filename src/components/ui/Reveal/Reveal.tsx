@@ -35,7 +35,7 @@ export function Reveal({ children }: RevealProps) {
 
   const className = visible ? `${styles.reveal} ${styles.visible}` : styles.reveal
   return (
-    <div ref={ref} className={className}>
+    <div ref={ref} className={className} data-visible={visible}>
       {children}
     </div>
   )
