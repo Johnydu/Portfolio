@@ -59,4 +59,8 @@
   --container-wide: 80rem;
   --sidebar-width: 17rem;
   --transition: 150ms ease;
+  --grid-size: 24px;
+  --glow-blur: 96px;
+  --reveal-distance: 8px;
+  --duration-reveal: 300ms;
 }

@@ -1,13 +1,12 @@
 .reveal {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(var(--reveal-distance));
   transition:
-    opacity 300ms ease,
-    transform 300ms ease;
+    opacity var(--duration-reveal) ease,
+    transform var(--duration-reveal) ease;
 }
 
-/* "visible" é classe global: o estado final precisa ter um nome estável */
-.reveal:global(.visible) {
+.reveal.visible {
   opacity: 1;
   transform: none;
 }

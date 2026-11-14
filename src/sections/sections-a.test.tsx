@@ -8,26 +8,23 @@ import { Hero } from './Hero/Hero'
 import { Skills } from './Skills/Skills'
 
 describe('Hero', () => {
-  it('mostra o h1 com o nome, o título e a frase de abertura a oportunidades', () => {
+  it('mostra o h1 com o nome, a frase de abertura a oportunidades e a cidade', () => {
     render(<Hero />)
     expect(
       screen.getByRole('heading', { level: 1, name: 'Johny Duarte' }),
     ).toBeInTheDocument()
-    expect(screen.getByText(profile.headline)).toBeInTheDocument()
     expect(screen.getByText(profile.tagline)).toBeInTheDocument()
     expect(screen.getByText(profile.location)).toBeInTheDocument()
   })
 
-  it('tem botões https para GitHub e LinkedIn que abrem em nova aba', () => {
+  it('tem o botão Ver projetos e o LinkedIn https em nova aba', () => {
     render(<Hero />)
-    const github = screen.getByRole('link', { name: /GitHub/ })
+    const projetos = screen.getByRole('link', { name: 'Ver projetos' })
     const linkedin = screen.getByRole('link', { name: /LinkedIn/ })
-    expect(github).toHaveAttribute('href', profile.links.github)
+    expect(projetos).toHaveAttribute('href', '#projetos')
     expect(linkedin).toHaveAttribute('href', profile.links.linkedin)
-    for (const link of [github, linkedin]) {
-      expect(link).toHaveAttribute('target', '_blank')
-      expect(link).toHaveAttribute('rel', 'noopener noreferrer')
-    }
+    expect(linkedin).toHaveAttribute('target', '_blank')
+    expect(linkedin).toHaveAttribute('rel', 'noopener noreferrer')
   })
 
   it('mostra a foto de Johny com texto alternativo e dimensões', () => {

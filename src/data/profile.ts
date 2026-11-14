@@ -9,6 +9,10 @@ export const profile: Profile = {
   location: 'São José do Rio Preto — SP',
   tagline:
     'Aberto a oportunidades como desenvolvedor Backend Java e a projetos freelance',
+  terminal: 'johny.duarte --stack java spring postgresql',
+  statement:
+    'Sistemas backend para processos reais, do chão de fábrica ao estoque.',
+  statementHighlight: 'reais',
   photo: {
     src: photoSrc,
     alt: 'Foto de Johny Duarte, de óculos e blusa preta de gola alta, com os braços cruzados',

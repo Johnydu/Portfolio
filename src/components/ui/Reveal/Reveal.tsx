@@ -33,7 +33,7 @@ export function Reveal({ children }: RevealProps) {
     return () => observer.disconnect()
   }, [visible])
 
-  const className = visible ? `${styles.reveal} visible` : styles.reveal
+  const className = visible ? `${styles.reveal} ${styles.visible}` : styles.reveal
   return (
     <div ref={ref} className={className}>
       {children}

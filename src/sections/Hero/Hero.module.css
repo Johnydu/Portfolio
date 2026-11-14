@@ -11,37 +11,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: var(--space-4);
-}
-
-.photo {
-  order: -1;
-  width: 100%;
-  max-width: 14rem;
-  height: auto;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-full);
-  box-shadow: var(--shadow-md);
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-
-@media (min-width: 48rem) {
-  .layout {
-    grid-template-columns: 1fr auto;
-    gap: var(--space-12);
-  }
-
-  .photo {
-    order: 0;
-    max-width: 20rem;
-  }
-}
-
-.headline {
-  color: var(--color-accent-text);
-  font-family: var(--font-mono);
-  font-size: var(--text-sm);
-  letter-spacing: 0.04em;
+  min-width: 0;
 }
 
 .name {
@@ -50,10 +20,22 @@
   letter-spacing: -0.02em;
 }
 
+.statement {
+  max-width: 36rem;
+  color: var(--color-text);
+  font-size: var(--text-xl);
+}
+
+.highlight {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
 .tagline {
   max-width: 40rem;
   color: var(--color-text-muted);
-  font-size: var(--text-xl);
 }
 
 .location {
@@ -65,7 +47,72 @@
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  margin-top: var(--space-4);
+  margin-top: var(--space-2);
+}
+
+/* Quadro da foto: cantos retos, borda âmbar e marcas de cota decorativas */
+.frame {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+  padding: var(--space-3);
+  border: 1px solid var(--color-accent);
+  justify-self: start;
+}
+
+.frame::before,
+.frame::after {
+  content: '';
+  position: absolute;
+  width: var(--space-4);
+  height: var(--space-4);
+  pointer-events: none;
+  border: 0 solid var(--color-accent);
+}
+
+.frame::before {
+  top: calc(-1 * var(--space-2));
+  left: calc(-1 * var(--space-2));
+  border-top-width: 2px;
+  border-left-width: 2px;
+}
+
+.frame::after {
+  right: calc(-1 * var(--space-2));
+  bottom: calc(-1 * var(--space-2));
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.dimension {
+  position: absolute;
+  top: calc(-1 * var(--space-3));
+  right: var(--space-3);
+  padding: 0 var(--space-2);
+  background: var(--color-bg);
+  color: var(--color-accent-text);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1;
+}
+
+@media (min-width: 48rem) {
+  .layout {
+    grid-template-columns: 1fr auto;
+    gap: var(--space-12);
+  }
+
+  .frame {
+    justify-self: end;
+  }
 }
 
 /* Com o cartão de perfil ao lado, a foto do Hero sai para não se repetir. */
@@ -75,7 +122,7 @@
     padding-top: var(--space-6);
   }
 
-  .photo {
+  .frame {
     display: none;
   }
 }

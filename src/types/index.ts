@@ -67,6 +67,12 @@ export interface Profile {
   headline: string
   location: string
   tagline: string
+  /** Linha de terminal do topo (digitada). */
+  terminal: string
+  /** Frase de destaque profissional do topo. */
+  statement: string
+  /** Palavra de `statement` sublinhada em âmbar. */
+  statementHighlight: string
   photo: {
     src: string
     alt: string
