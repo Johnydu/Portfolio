@@ -1,3 +1,25 @@
+/* Brilho âmbar discreto atrás da seção; decorativo, sem texto. */
+.secao {
+  position: relative;
+  isolation: isolate;
+}
+
+.secao::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 20%;
+  inset-inline-start: 50%;
+  width: min(100%, 40rem);
+  aspect-ratio: 1;
+  border-radius: var(--radius-full);
+  background: var(--color-glow);
+  filter: blur(var(--glow-blur));
+  opacity: 0.5;
+  pointer-events: none;
+  transform: translateX(-50%);
+}
+
 .grid {
   display: grid;
   gap: var(--space-6);

@@ -4,7 +4,16 @@ import type { Project } from '../../types'
 import { ImageCarousel } from './ImageCarousel'
 import styles from './ProjectShowcase.module.css'
 
-export function ProjectShowcase({ project }: { project: Project }) {
+type ProjectShowcaseProps = {
+  project: Project
+  /** Inverte o lado da mídia e do cartão (só visual, feito por CSS). */
+  reverso?: boolean
+}
+
+export function ProjectShowcase({
+  project,
+  reverso = false,
+}: ProjectShowcaseProps) {
   const { showcase } = project
   const logo = showcase?.logo
   const gallery = showcase?.gallery
@@ -13,6 +22,8 @@ export function ProjectShowcase({ project }: { project: Project }) {
     styles.showcase,
     project.featured ? styles.featured : '',
     gallery ? styles.withGallery : '',
+    gallery || media ? '' : styles.semMidia,
+    reverso ? styles.reverso : '',
   ]
     .filter(Boolean)
     .join(' ')
@@ -24,38 +35,6 @@ export function ProjectShowcase({ project }: { project: Project }) {
   return (
     <article className={classes}>
       <div className={styles.layout}>
-        {gallery && (
-          <div className={styles.gallery}>
-            <ImageCarousel
-              images={gallery}
-              label={`Imagens do ${project.title}`}
-            />
-          </div>
-        )}
-        {media && (
-          <figure className={styles.media}>
-            <img
-              className={shotClass}
-              src={media.src}
-              alt={media.alt}
-              width={media.width}
-              height={media.height}
-              loading="lazy"
-              decoding="async"
-            />
-            {logo && (
-              <img
-                className={styles.mark}
-                src={logo.src}
-                alt={logo.alt}
-                width={logo.width}
-                height={logo.height}
-                loading="lazy"
-                decoding="async"
-              />
-            )}
-          </figure>
-        )}
         <div className={styles.body}>
           {(project.featured || project.commercial) && (
             <div className={styles.labels}>
@@ -127,6 +106,38 @@ export function ProjectShowcase({ project }: { project: Project }) {
             )}
           </div>
         </div>
+        {gallery && (
+          <div className={styles.gallery}>
+            <ImageCarousel
+              images={gallery}
+              label={`Imagens do ${project.title}`}
+            />
+          </div>
+        )}
+        {media && (
+          <figure className={styles.media}>
+            <img
+              className={shotClass}
+              src={media.src}
+              alt={media.alt}
+              width={media.width}
+              height={media.height}
+              loading="lazy"
+              decoding="async"
+            />
+            {logo && (
+              <img
+                className={styles.mark}
+                src={logo.src}
+                alt={logo.alt}
+                width={logo.width}
+                height={logo.height}
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+          </figure>
+        )}
       </div>
     </article>
   )
