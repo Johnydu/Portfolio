@@ -25,10 +25,10 @@ React + TypeScript) publicada no GitHub Pages. Não há back-end.
 
 - `src/data/` — todo o conteúdo (textos, projetos, tecnologias), tipado
 - `src/types/` — tipos do conteúdo
-- `src/components/ui/` — Button, Tag, Card, SectionTitle
+- `src/components/ui/` — Button, Tag, Card, SectionTitle, Reveal (entrada ao rolar), TerminalLine (linha de terminal digitada)
 - `src/components/layout/` — Header, Footer, Section
 - `src/sections/` — Hero, About, Skills, Projects, Timeline, Contact
-- `src/styles/` — `tokens.css` (Design System) e `global.css`
+- `src/styles/` — `tokens.css` (Design System, grafite e âmbar) e `global.css` (malha e brilho de fundo)
 
 O conteúdo fica em `src/data/`, separado da interface. Para adicionar um
 projeto, edite apenas `src/data/projects.ts`.
@@ -57,7 +57,9 @@ projeto, edite apenas `src/data/projects.ts`.
 ## Qualidade
 
 - HTML semântico, navegação por teclado e contraste WCAG AA.
-- Animação apenas um _fade-in_ sutil, desativado com `prefers-reduced-motion`.
+- Animações apenas as definidas em `docs/design/direcao-visual.md` (digitação do terminal, seções surgindo ao
+  entrar na tela e linhas do diagrama de tecnologias acendendo), todas desativadas com `prefers-reduced-motion`.
+- Identidade visual: direção "grafite e âmbar", descrita em `docs/design/direcao-visual.md`.
 
 ## Git
 

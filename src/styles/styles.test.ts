@@ -25,12 +25,12 @@ function contrast(a: string, b: string): number {
 
 describe('tokens.css', () => {
   it('define as cores base da spec', () => {
-    expect(token('--color-bg').toUpperCase()).toBe('#0B0B0F')
-    expect(token('--color-surface').toUpperCase()).toBe('#14141A')
-    expect(token('--color-border').toUpperCase()).toBe('#23232C')
-    expect(token('--color-text').toUpperCase()).toBe('#E8E8EE')
-    expect(token('--color-text-muted').toUpperCase()).toBe('#A0A0B0')
-    expect(token('--color-accent').toUpperCase()).toBe('#8B5CF6')
+    expect(token('--color-bg').toUpperCase()).toBe('#141413')
+    expect(token('--color-surface').toUpperCase()).toBe('#1C1C1A')
+    expect(token('--color-border').toUpperCase()).toBe('#2C2C2A')
+    expect(token('--color-text').toUpperCase()).toBe('#F1EFE8')
+    expect(token('--color-text-muted').toUpperCase()).toBe('#B4B2A9')
+    expect(token('--color-accent').toUpperCase()).toBe('#EF9F27')
   })
 
   it.each([
@@ -40,7 +40,7 @@ describe('tokens.css', () => {
     ['--color-text-muted', '--color-surface'],
     ['--color-accent-text', '--color-bg'],
     ['--color-accent-text', '--color-surface'],
-    ['--color-bg', '--color-accent'],
+    ['--color-on-accent', '--color-accent'],
   ])('contraste de %s sobre %s é no mínimo 4.5:1 (WCAG AA)', (fg, bg) => {
     expect(contrast(token(fg), token(bg))).toBeGreaterThanOrEqual(4.5)
   })
