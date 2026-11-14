@@ -57,7 +57,9 @@ projeto, edite apenas `src/data/projects.ts`.
 ## Qualidade
 
 - HTML semântico, navegação por teclado e contraste WCAG AA.
-- Animação apenas um _fade-in_ sutil, desativado com `prefers-reduced-motion`.
+- Animações apenas as definidas em `docs/design/direcao-visual.md` (digitação do terminal, seções surgindo ao
+  entrar na tela e linhas do diagrama de tecnologias acendendo), todas desativadas com `prefers-reduced-motion`.
+- Identidade visual: direção "grafite e âmbar", descrita em `docs/design/direcao-visual.md`.
 
 ## Git
 

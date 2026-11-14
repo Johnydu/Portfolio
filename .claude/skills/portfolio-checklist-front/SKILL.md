@@ -81,8 +81,9 @@ Havendo achado `ALTA`, o veredito é `REPROVADO`.
 23. As habilidades aparecem por nível qualitativo (Foco principal, Em aprofundamento, Fundamentos)? Barra de
     progresso, porcentagem, estrelas ou nota numérica são `MEDIA`.
 24. O HTML é semântico (`header`, `nav`, `main`, `section`, `footer`, `ul`, `button` e `a` no papel certo, sem `div`
-    clicável) e a única animação é um fade-in sutil? Outro tipo de animação (deslize, escala, rotação, parallax) é
-    `MEDIA`.
+    clicável) e as animações são só as definidas em `docs/design/direcao-visual.md` (digitação do terminal, seções
+    surgindo ao entrar na tela e linhas do diagrama de tecnologias acendendo)? Outro tipo de animação (parallax,
+    rotação, escala chamativa, efeito contínuo) é `MEDIA`.
 
 ## Capturas de tela
 
