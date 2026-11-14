@@ -29,13 +29,15 @@ const PASTA_CAPTURAS = path.resolve('.time', 'telas')
 const VITE = path.resolve('node_modules', 'vite', 'bin', 'vite.js')
 
 // Rola a página até o fim, aos poucos, para disparar animações de entrada que dependem da rolagem, e volta ao topo.
+// A rolagem é instantânea de propósito: com `scroll-behavior: smooth` no CSS do projeto, um scrollTo comum só começa
+// a animar, e a página volta ao topo antes de as seções de baixo entrarem na tela (run 20261114-1025 do Portfolio).
 const ROLAR_PAGINA = `(async () => {
   const passo = Math.max(200, Math.floor(window.innerHeight * 0.8))
   for (let y = 0; y < document.documentElement.scrollHeight; y += passo) {
-    window.scrollTo(0, y)
-    await new Promise((fim) => setTimeout(fim, 100))
+    window.scrollTo({ top: y, behavior: 'instant' })
+    await new Promise((fim) => setTimeout(fim, 150))
   }
-  window.scrollTo(0, 0)
+  window.scrollTo({ top: 0, behavior: 'instant' })
   await document.fonts.ready
   return true
 })()`
