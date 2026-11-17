@@ -1,6 +1,7 @@
 ---
 name: documentador
 description: Documentador do time de agentes. Atualiza a documentação, escreve o relatório técnico e a nota de novidade. Usado só pelo orquestrador.
+modelo: haiku
 permitir:
   - Read
   - Grep

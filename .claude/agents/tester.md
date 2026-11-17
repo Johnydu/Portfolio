@@ -1,6 +1,7 @@
 ---
 name: tester
 description: Tester do time de agentes. Escreve os testes de aceitação da tarefa antes da implementação. Usado só pelo orquestrador.
+modelo: opus
 permitir:
   - Read
   - Grep
