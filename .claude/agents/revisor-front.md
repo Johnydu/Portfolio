@@ -1,6 +1,7 @@
 ---
 name: revisor-front
 description: Revisor de front-end do time de agentes. Confere o código e as capturas de tela com a direção visual e a checklist web. Usado só pelo orquestrador.
+modelo: opus
 permitir:
   - Read
   - Grep

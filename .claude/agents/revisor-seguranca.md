@@ -1,6 +1,7 @@
 ---
 name: revisor-seguranca
 description: Revisor de segurança do time de agentes. Revisa o diff com as saídas das ferramentas. Usado só pelo orquestrador.
+modelo: opus
 permitir:
   - Read
   - Grep

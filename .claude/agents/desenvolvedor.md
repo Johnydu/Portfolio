@@ -1,6 +1,8 @@
 ---
 name: desenvolvedor
 description: Desenvolvedor do time de agentes. Implementa a tarefa com TDD até os testes de aceitação passarem. Usado só pelo orquestrador.
+modelo: sonnet
+modelo-reforco: opus
 permitir:
   - Read
   - Grep

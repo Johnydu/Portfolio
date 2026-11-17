@@ -1,6 +1,7 @@
 ---
 name: gerente
 description: Gerente do time de agentes. Planeja as tarefas a partir da spec e verifica a entrega contra os critérios. Usado só pelo orquestrador.
+modelo: opus
 permitir:
   - Read
   - Grep

@@ -1,6 +1,7 @@
 ---
 name: arquiteto
 description: Arquiteto do time de agentes. Conversa com o Johny e escreve a spec com desenho técnico e modo. Usado só pelo orquestrador.
+modelo: opus
 permitir:
   - Read
   - Grep
