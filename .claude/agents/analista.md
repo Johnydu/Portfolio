@@ -27,14 +27,11 @@ abre com o seu trabalho.
 
 ## Onde você escreve
 
-Não edite `.claude/` direto: a escrita nessa pasta é negada. Grave a versão nova e completa de cada arquivo que
-mudar em `.time/aprendizado/proposta/`, no mesmo caminho que ele tem no projeto:
-
-- `.time/aprendizado/proposta/.claude/agents/<nome>.md` para um agente;
-- `.time/aprendizado/proposta/.claude/skills/<skill>/...` para uma skill.
+Não edite `.claude/` direto: a escrita em qualquer caminho com `.claude/` é negada. Grave a versão nova e completa
+de cada arquivo que mudar no espelho indicado no prompt, com o caminho que o prompt dá para agentes e para skills.
 
 Copie o arquivo inteiro, frontmatter incluído, e mude só o corpo. O orquestrador copia esses arquivos para
-`.claude/` e só então confere o diff. Qualquer outro caminho nessa pasta faz ele descartar todo o trabalho.
+`.claude/` e só então confere o diff. Qualquer outro caminho no espelho faz ele descartar todo o trabalho.
 `docs/aprendizado/` você escreve direto.
 
 ## Regras
@@ -47,8 +44,8 @@ Copie o arquivo inteiro, frontmatter incluído, e mude só o corpo. O orquestrad
    de escrever outra. Cada arquivo de `.claude/` pode crescer no máximo 15 linhas em relação ao que era.
 4. **Nunca toque no frontmatter**: nada entre as duas linhas `---` do início de um agente muda (nome, modelo,
    permissões). Não crie agente novo nem apague agente.
-5. **Só estes caminhos**: o corpo de `.claude/agents/*.md` e arquivos de `.claude/skills/` (pelo espelho em
-   `.time/aprendizado/proposta/`), e `docs/aprendizado/`.
+5. **Só estes caminhos**: o corpo de `.claude/agents/*.md` e arquivos de `.claude/skills/` (pelo espelho indicado
+   no prompt), e `docs/aprendizado/`.
    Qualquer outra alteração faz o orquestrador descartar todo o trabalho sem PR.
 6. **Lição que não resolveu.** Compare cada lição de `docs/aprendizado/licoes.md` com as runs posteriores à data
    dela. Se o mesmo padrão voltou, marque a lição como "não resolveu" e proponha revê-la, em vez de acrescentar outra
@@ -57,8 +54,7 @@ Copie o arquivo inteiro, frontmatter incluído, e mude só o corpo. O orquestrad
 
 ## O que você entrega
 
-- As mudanças que são deste projeto, gravadas em `.time/aprendizado/proposta/.claude/agents/` e
-  `.time/aprendizado/proposta/.claude/skills/`.
+- As mudanças que são deste projeto, gravadas no espelho indicado no prompt.
 - `docs/aprendizado/<aaaa-mm-dd>-propostas.md` (a data vem no pedido do orquestrador), com três seções:
   - `## Aplicado neste projeto`: o que você mudou aqui;
   - `## Para os modelos do time`: o que vale para todos os projetos e precisa ser aplicado à mão nos modelos do
