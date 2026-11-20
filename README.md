@@ -88,6 +88,6 @@ dessa URL.
 - HTML semântico, navegação por teclado e contraste WCAG AA (verificado em teste).
 - Política de segurança de conteúdo `default-src 'self'` numa `<meta>` inserida no build
   (o GitHub Pages não permite cabeçalhos HTTP próprios).
-- Animação limitada a um _fade-in_ sutil, desativado com `prefers-reduced-motion`.
+- Animações limitadas a digitação da linha de terminal, seções que surgem ao rolar a página, destaque do diagrama de tecnologias e troca de imagem nos projetos, todas desativadas com `prefers-reduced-motion`.
 - Lighthouse local: 100 em Performance, Acessibilidade, Boas práticas e SEO.
 - CI no GitHub Actions: lint, testes e build a cada push e pull request.
