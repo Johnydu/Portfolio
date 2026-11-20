@@ -20,17 +20,12 @@ export function ProjectShowcase({
   const media = gallery ? undefined : showcase?.media
   const classes = [
     styles.showcase,
-    project.featured ? styles.featured : '',
     gallery ? styles.withGallery : '',
     gallery || media ? '' : styles.semMidia,
     reverso ? styles.reverso : '',
   ]
     .filter(Boolean)
     .join(' ')
-  const shotClass =
-    showcase?.focus === 'start'
-      ? `${styles.shot} ${styles.shotStart}`
-      : styles.shot
 
   return (
     <article className={classes}>
@@ -117,7 +112,7 @@ export function ProjectShowcase({
         {media && (
           <figure className={styles.media}>
             <img
-              className={shotClass}
+              className={styles.shot}
               src={media.src}
               alt={media.alt}
               width={media.width}
