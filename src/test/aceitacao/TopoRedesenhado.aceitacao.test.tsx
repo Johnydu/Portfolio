@@ -1,4 +1,5 @@
-import { readFileSync } from 'node:fs'
+import { readdirSync, readFileSync, statSync } from 'node:fs'
+import { join } from 'node:path'
 import { act, render, screen, within } from '@testing-library/react'
 import { axe } from 'vitest-axe'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
@@ -22,7 +23,8 @@ const revealTsx = readFileSync('src/components/ui/Reveal/Reveal.tsx', 'utf8')
 
 const TERMINAL = 'johny.duarte --stack java spring postgresql'
 const STATEMENT =
-  'Sistemas backend para processos reais, do chão de fábrica ao estoque.'
+  'Transformo regras de negócio complicadas em sistemas simples de usar.'
+const ACEITACAO_DIR = 'src/test/aceitacao'
 
 function stubMatchMedia(reduce: boolean) {
   vi.stubGlobal('matchMedia', (query: string) => ({
@@ -51,6 +53,53 @@ function stubIntersectionObserver() {
 
 function stripComments(css: string): string {
   return css.replace(/\/\*[\s\S]*?\*\//g, '')
+}
+
+// Posição da chave que fecha o bloco aberto em `open`.
+function closeOf(css: string, open: number): number {
+  let depth = 0
+  for (let i = open; i < css.length; i++) {
+    if (css[i] === '{') depth++
+    if (css[i] === '}') depth--
+    if (depth === 0) return i
+  }
+  return css.length - 1
+}
+
+// Conteúdo dos blocos `@<at> ...{ ... }` cuja condição casa com o padrão.
+function atBlocks(css: string, header: RegExp): string[] {
+  const found: string[] = []
+  const pattern = new RegExp(header.source, 'g')
+  let match = pattern.exec(css)
+  while (match) {
+    const open = css.indexOf('{', match.index)
+    const close = closeOf(css, open)
+    found.push(css.slice(open + 1, close))
+    pattern.lastIndex = close
+    match = pattern.exec(css)
+  }
+  return found
+}
+
+// Nome original das classes do CSS Module (`_tagline_1a2b3` → `tagline`).
+function baseClassNames(el: Element): string[] {
+  return Array.from(el.classList).map(
+    (c) => /^_?([A-Za-z][\w-]*?)_[A-Za-z0-9]{4,}$/.exec(c)?.[1] ?? c,
+  )
+}
+
+// Arquivos .ts/.tsx de produção (fora dos testes).
+function productionSources(dir: string): string[] {
+  const out: string[] = []
+  for (const entry of readdirSync(dir)) {
+    const path = join(dir, entry)
+    if (statSync(path).isDirectory()) {
+      if (entry !== 'test') out.push(...productionSources(path))
+    } else if (/\.tsx?$/.test(entry) && !/\.test\.tsx?$/.test(entry)) {
+      out.push(path)
+    }
+  }
+  return out
 }
 
 function follows(a: Node, b: Node): boolean {
@@ -83,7 +132,7 @@ describe('dados do perfil', () => {
   it('perfilTemTerminalFraseEPalavraDeDestaque', () => {
     expect(profile.terminal).toBe(TERMINAL)
     expect(profile.statement).toBe(STATEMENT)
-    expect(profile.statementHighlight).toBe('reais')
+    expect(profile.statementHighlight).toBe('simples')
   })
 })
 
@@ -100,6 +149,11 @@ describe('composição do topo', () => {
     expect(follows(statementParagraph(), projetos)).toBe(true)
     expect(follows(projetos, linkedin)).toBe(true)
     expect(follows(linkedin, photo)).toBe(true)
+  })
+
+  it('conteinerDoTopoUsaClasseLayoutSemTemplateLiteral', () => {
+    expect(heroTsx).toMatch(/className=\{styles\.layout\}/)
+    expect(heroTsx).not.toMatch(/className=\{`[^`]*styles\.layout/)
   })
 
   it('fotoVemDepoisDoTextoNoFluxoParaFicarEmbaixoNoCelular', () => {
@@ -213,15 +267,39 @@ describe('TerminalLine e movimento', () => {
 })
 
 describe('frase de destaque', () => {
-  it('poeAPalavraReaisEmSpanProprioEMantemAFraseLegivelComoTextoUnico', () => {
+  it('poeAPalavraSimplesEmSpanProprioEMantemAFraseLegivelComoTextoUnico', () => {
     const { container } = render(<Hero />)
     const highlight = container.querySelector('[class*="highlight"]')
     expect(highlight).not.toBeNull()
     expect(highlight?.tagName).toBe('SPAN')
-    expect(highlight?.textContent).toBe(profile.statementHighlight)
+    expect(highlight?.textContent).toBe('simples')
     const paragraph = statementParagraph()
     expect(paragraph).toContainElement(highlight as HTMLElement)
-    expect(paragraph.textContent).toBe(profile.statement)
+    expect(paragraph.textContent).toBe(STATEMENT)
+  })
+})
+
+describe('tagline e localização', () => {
+  it('heroRenderizaTaglineELocalizacaoEEscondeAPartirDe64rem', () => {
+    render(<Hero />)
+    const tagline = screen.getByText(profile.tagline)
+    const location = screen.getByText(profile.location)
+
+    const css = stripComments(heroCss)
+    const wide = atBlocks(css, /@media[^{]*min-width:\s*64rem[^{]*/).join('\n')
+    const hidden = [...wide.matchAll(/([^{}]+)\{([^{}]*)\}/g)].filter(
+      ([, , body]) => /display:\s*none/.test(body),
+    )
+    expect(hidden.length).toBeGreaterThan(0)
+    const hiddenSelectors = hidden.map(([, selector]) => selector).join(',')
+    for (const el of [tagline, location]) {
+      const names = baseClassNames(el)
+      expect(names.length, el.textContent ?? '').toBeGreaterThan(0)
+      expect(
+        names.some((n) => new RegExp(`\\.${n}(?![\\w-])`).test(hiddenSelectors)),
+        `classe de "${el.textContent}" escondida a partir de 64rem`,
+      ).toBe(true)
+    }
   })
 })
 
@@ -324,6 +402,48 @@ describe('tokens da base visual', () => {
     expect(reveal).not.toMatch(/\b300ms\b/)
     expect(reveal).toContain('var(--reveal-distance)')
     expect(reveal).toContain('var(--duration-reveal)')
+  })
+
+  it('tokensDeFormaDefinemBordaLinhaSublinhadoEQuadro', () => {
+    const css = stripComments(tokens)
+    expect(css).toMatch(/--border-width:\s*1px\s*;/)
+    expect(css).toMatch(/--line-width:\s*2px\s*;/)
+    expect(css).toMatch(/--underline-thickness:\s*3px\s*;/)
+    expect(css).toMatch(/--underline-offset:\s*6px\s*;/)
+    expect(css).toMatch(/--frame-max-width:\s*20rem\s*;/)
+  })
+
+  it('heroCssNaoTemMedidaEmPxLiteralEUsaOsTokensDeForma', () => {
+    const css = stripComments(heroCss)
+    expect(css).not.toBe('')
+    expect(css).not.toMatch(/\d+(\.\d+)?px\b/)
+    expect(css).toMatch(
+      /text-decoration-thickness:\s*var\(--underline-thickness\)/,
+    )
+    expect(css).toMatch(/text-underline-offset:\s*var\(--underline-offset\)/)
+    expect(css).toContain('var(--border-width)')
+    expect(css).toContain('var(--line-width)')
+    expect(css).toMatch(/max-width:\s*var\(--frame-max-width\)/)
+  })
+
+  it('globalNaoTemFadeInENenhumComponenteUsaAClasse', () => {
+    const global = stripComments(globalCss)
+    expect(global).not.toMatch(/\.fade-in\b/)
+    expect(global).not.toMatch(/@keyframes\s+fade-in\b/)
+    const sources = productionSources('src')
+    expect(sources.length).toBeGreaterThan(0)
+    for (const file of sources) {
+      expect(readFileSync(file, 'utf8'), file).not.toMatch(/fade-in/)
+    }
+  })
+
+  it('existeUmUnicoArquivoDeAceitacaoDoTopoComAFraseNova', () => {
+    const topo = readdirSync(ACEITACAO_DIR).filter((f) =>
+      /^Topo.*\.aceitacao\.test\.tsx$/.test(f),
+    )
+    expect(topo).toEqual(['TopoRedesenhado.aceitacao.test.tsx'])
+    const content = readFileSync(join(ACEITACAO_DIR, topo[0]), 'utf8')
+    expect(content).toContain(STATEMENT)
   })
 
   it('revealUsaClasseLocalDoModuloParaOEstadoVisivel', () => {
