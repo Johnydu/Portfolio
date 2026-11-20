@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { act, render, screen, within } from '@testing-library/react'
+import { siCss } from 'simple-icons'
 import { axe } from 'vitest-axe'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { skills } from '../../data/skills'
@@ -209,8 +210,54 @@ describe('regras dos logotipos', () => {
 
   it('corDoLogotipoVemDoCssComTokens', () => {
     const css = stripComments(techIconCss)
-    expect(css).toMatch(/color:\s*var\(--color-text-muted\)/)
-    expect(css).toMatch(/var\(--color-accent\)/)
+    expect(css).toMatch(/color:\s*var\([^;]*var\(--color-text-muted\)\s*\)/)
+    expect(stripComments(skillsCss)).toMatch(/var\(--color-accent\)/)
+  })
+
+  it('css3MostraLogotipoDoSiCssComoSvgDecorativoEJavaContinuaComIniciais', () => {
+    render(<Skills />)
+    const svg = itemOf('CSS3').querySelector('svg')
+    expect(svg, 'svg de CSS3').not.toBeNull()
+    expect(svg).toHaveAttribute('aria-hidden', 'true')
+    expect(svg).toHaveAttribute('fill', 'currentColor')
+    expect(svg?.querySelector('path')).toHaveAttribute('d', siCss.path)
+
+    const java = itemOf('Java')
+    expect(java.querySelector('svg')).toBeNull()
+    expect(icon(java).textContent?.trim()).toMatch(DECORATIVE_INITIALS)
+  })
+
+  it('realceAmbarDoLogotipoVemDoHoverDoItemInteiroPorPropriedadeCustomizada', () => {
+    const iconCss = stripComments(techIconCss)
+    expect(iconCss).toMatch(
+      /color:\s*var\(\s*--tech-icon-color\s*,\s*var\(--color-text-muted\)\s*\)/,
+    )
+    expect(iconCss).not.toMatch(/:hover/)
+
+    const css = stripComments(skillsCss)
+    const hover = [...css.matchAll(/([^{}]*\.item:hover[^{}]*)\{([^{}]*)\}/g)]
+    expect(hover.length).toBeGreaterThan(0)
+    const bodies = hover.map(([, , body]) => body).join('\n')
+    expect(bodies).toMatch(/--tech-icon-color:\s*var\(--color-accent\)/)
+    // o nome continua na cor de texto: o hover do item não troca `color`
+    expect(bodies).not.toMatch(/(^|[;\s])color\s*:/)
+
+    // a regra de hover é do item da lista renderizado
+    render(<Skills />)
+    expect(itemOf('CSS3').getAttribute('class') ?? '').toMatch(/item/)
+  })
+})
+
+describe('medidas com tokens', () => {
+  it('skillsCssNaoTemMedidaEmPxLiteralEUsaTokensDeLinhaEBorda', () => {
+    const css = stripComments(skillsCss)
+    expect(css).not.toBe('')
+    expect(css).not.toMatch(/\d+(\.\d+)?px\b/)
+    expect(css).toContain('var(--line-width)')
+    expect(css).toContain('var(--border-width)')
+    expect(css).toMatch(
+      /calc\(\s*-1\s*\*\s*var\(--space-6\)\s*-\s*var\(--line-width\)\s*\)/,
+    )
   })
 })
 

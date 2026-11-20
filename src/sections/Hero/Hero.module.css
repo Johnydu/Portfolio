@@ -29,8 +29,8 @@
 .highlight {
   text-decoration: underline;
   text-decoration-color: var(--color-accent);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 6px;
+  text-decoration-thickness: var(--underline-thickness);
+  text-underline-offset: var(--underline-offset);
 }
 
 .tagline {
@@ -54,9 +54,9 @@
 .frame {
   position: relative;
   width: 100%;
-  max-width: 20rem;
+  max-width: var(--frame-max-width);
   padding: var(--space-3);
-  border: 1px solid var(--color-accent);
+  border: var(--border-width) solid var(--color-accent);
   justify-self: start;
 }
 
@@ -73,15 +73,15 @@
 .frame::before {
   top: calc(-1 * var(--space-2));
   left: calc(-1 * var(--space-2));
-  border-top-width: 2px;
-  border-left-width: 2px;
+  border-top-width: var(--line-width);
+  border-left-width: var(--line-width);
 }
 
 .frame::after {
   right: calc(-1 * var(--space-2));
   bottom: calc(-1 * var(--space-2));
-  border-right-width: 2px;
-  border-bottom-width: 2px;
+  border-right-width: var(--line-width);
+  border-bottom-width: var(--line-width);
 }
 
 .photo {
@@ -112,5 +112,13 @@
 
   .frame {
     justify-self: end;
+  }
+}
+
+/* A partir daqui o ProfileCard aparece e já mostra disponibilidade e cidade. */
+@media (min-width: 64rem) {
+  .tagline,
+  .location {
+    display: none;
   }
 }
