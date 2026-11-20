@@ -11,8 +11,8 @@ export const profile: Profile = {
     'Aberto a oportunidades como desenvolvedor Backend Java e a projetos freelance',
   terminal: 'johny.duarte --stack java spring postgresql',
   statement:
-    'Sistemas backend para processos reais, do chão de fábrica ao estoque.',
-  statementHighlight: 'reais',
+    'Transformo regras de negócio complicadas em sistemas simples de usar.',
+  statementHighlight: 'simples',
   photo: {
     src: photoSrc,
     alt: 'Foto de Johny Duarte, de óculos e blusa preta de gola alta, com os braços cruzados',

@@ -307,15 +307,39 @@ describe('CSS só com tokens', () => {
   })
 })
 
-describe('celular', () => {
-  it('sobreposicaoSoExisteApartirDe768pxEMidiaFicaAcimaNoCelular', () => {
+describe('sem sobreposição', () => {
+  it('cartaoNaoTemMargemNegativaEmNenhumaLargura', () => {
     const css = stripComments(showcaseCss)
     expect(css).not.toBe('')
-    // fora de qualquer @media/@supports: sem margem negativa (sem sobreposição)
+    // fora de qualquer @media/@supports: sem margem negativa
     expect(withoutAtBlocks(css)).not.toMatch(NEGATIVE_MARGIN)
-    const desktop = atBlocks(css, DESKTOP).join('\n')
-    expect(desktop).toMatch(NEGATIVE_MARGIN)
-    expect(desktop).toMatch(/z-index:\s*\d+/)
+    // dentro dos @media (inclusive a partir de 768px): também sem margem negativa
+    expect(atBlocks(css, DESKTOP).join('\n')).not.toMatch(NEGATIVE_MARGIN)
+    expect(atBlocks(css, /@media[^{]*/).join('\n')).not.toMatch(NEGATIVE_MARGIN)
+    expect(css).not.toMatch(NEGATIVE_MARGIN)
+  })
+
+  it('midiaNaoTemRegrasDeObjectPositionNemRecuoParaConviverComOCartao', () => {
+    const css = stripComments(showcaseCss)
+    expect(css).not.toBe('')
+    expect(css).not.toMatch(/object-position\s*:/)
+  })
+})
+
+describe('espaço entre vitrines', () => {
+  it('espacoVerticalEntreAsVitrinesUsaSpace16', () => {
+    const css = [stripComments(projectsCss), stripComments(showcaseCss)].join('\n')
+    expect(css).toMatch(
+      /(?:^|[\s;{])(?:gap|row-gap|margin(?:-block)?(?:-top|-bottom|-start|-end)?)\s*:[^;{}]*var\(--space-16\)/,
+    )
+  })
+})
+
+describe('código das vitrines', () => {
+  it('projectShowcaseNaoReferenciaStylesFeatured', () => {
+    expect(showcaseTsx).not.toBe('')
+    expect(showcaseTsx).not.toMatch(/styles\.featured\b/)
+    expect(showcaseTsx).not.toMatch(/styles\[\s*['"`]featured['"`]\s*\]/)
   })
 })
 

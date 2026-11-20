@@ -12,7 +12,7 @@
 
 .coreText {
   padding: var(--space-3) var(--space-6);
-  border: 1px solid var(--color-accent);
+  border: var(--border-width) solid var(--color-accent);
   border-radius: var(--radius-md);
   background: var(--color-surface);
   box-shadow: var(--shadow-md);
@@ -25,7 +25,7 @@
 /* Tronco vertical do núcleo até as linhas dos grupos. */
 .trunk {
   display: block;
-  width: 2px;
+  width: var(--line-width);
   height: var(--space-8);
   background: var(--color-border);
 }
@@ -54,7 +54,7 @@
   flex-direction: column;
   gap: var(--space-3);
   padding: var(--space-5);
-  border: 1px solid var(--color-border);
+  border: var(--border-width) solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
 }
@@ -65,7 +65,7 @@
   top: calc(-1 * var(--space-3));
   left: 0;
   right: 0;
-  height: 2px;
+  height: var(--line-width);
   background: var(--color-border);
 }
 
@@ -110,6 +110,10 @@
   gap: var(--space-2);
 }
 
+.item:hover {
+  --tech-icon-color: var(--color-accent);
+}
+
 .item {
   display: flex;
   align-items: center;
@@ -123,7 +127,7 @@
     grid-template-columns: 1fr;
     gap: var(--space-8);
     margin-left: var(--space-6);
-    border-left: 2px solid var(--color-border);
+    border-left: var(--line-width) solid var(--color-border);
     padding-left: var(--space-6);
   }
 
@@ -131,9 +135,9 @@
   .line {
     top: 0;
     bottom: 0;
-    left: calc(-1 * var(--space-6) - 2px);
+    left: calc(-1 * var(--space-6) - var(--line-width));
     right: auto;
-    width: 2px;
+    width: var(--line-width);
     height: auto;
   }
 

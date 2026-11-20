@@ -56,7 +56,7 @@ function CloseIcon() {
 
 /**
  * Carrossel simples: uma imagem por vez, setas, indicadores e as setas do
- * teclado. Não troca sozinho (o projeto só permite o fade-in como animação).
+ * teclado. Não troca sozinho (o projeto só permite as animações da direção visual).
  * Clicar na imagem abre um visualizador ampliado num <dialog> nativo.
  */
 export function ImageCarousel({ images, label }: ImageCarouselProps) {

@@ -2,12 +2,8 @@
   width: var(--space-6);
   height: var(--space-6);
   flex-shrink: 0;
-  color: var(--color-text-muted);
+  color: var(--tech-icon-color, var(--color-text-muted));
   transition: color var(--transition);
-}
-
-.icon:hover {
-  color: var(--color-accent);
 }
 
 .initials {

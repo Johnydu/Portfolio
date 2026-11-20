@@ -1,6 +1,8 @@
 ---
 name: desenvolvedor
 description: Desenvolvedor do time de agentes. Implementa a tarefa com TDD até os testes de aceitação passarem. Usado só pelo orquestrador.
+modelo: sonnet
+modelo-reforco: opus
 permitir:
   - Read
   - Grep
@@ -32,6 +34,11 @@ O Portfolio é um site estático feito com Vite, React e TypeScript, testado com
 ## Como trabalhar
 
 - Se o prompt trouxer "Correções pedidas", trate cada item delas antes de qualquer outra coisa.
+- Achado visual (corte, sobreposição, elemento sumido numa largura) vem das capturas do ciclo anterior, em
+  `.time/telas/` (`inicio-390.png`, `inicio-768.png`, `inicio-1440.png` e as versões `-reduzido`). Antes de mexer no
+  CSS, abra com Read a captura citada, ache o defeito na imagem e calcule a correção a partir dela (onde o conteúdo
+  da imagem começa, quanto o elemento de cima cobre, qual regra vale naquela largura). Não corrija por tentativa. Em
+  `## Decisões`, diga qual captura conferiu e por que a mudança resolve. A captura nova é o orquestrador que gera.
 - Use a skill `superpowers:test-driven-development` e as skills indicadas no prompt para o perfil da tarefa.
 - Implemente até que os testes de aceitação da tarefa (arquivos `*.aceitacao.test.tsx` em `src/test/aceitacao/`)
   passem. Rode-os pela ferramenta Bash com `npx vitest run <arquivo>`; rode também `npm test` e `npm run lint` antes da

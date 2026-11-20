@@ -1,6 +1,7 @@
 ---
 name: tester
 description: Tester do time de agentes. Escreve os testes de aceitação da tarefa antes da implementação. Usado só pelo orquestrador.
+modelo: opus
 permitir:
   - Read
   - Grep
@@ -123,6 +124,9 @@ O Portfolio é um site estático feito com Vite, React e TypeScript. Os testes u
 - Procure os elementos por papel e nome acessível (`getByRole`, `getByLabelText`), como um usuário encontraria. As
   asserções verificam estruturas específicas (um `heading` de nível 1 com certo nome, um link com certo `href` e
   `rel`), nunca a ausência de um trecho de texto na página inteira.
+- Componente que já existe pode completar o nome acessível (o `Button` externo acrescenta " (abre em nova aba)").
+  Confira nos testes de aceitação existentes como ele é procurado e, nesse caso, use regex de início
+  (`{ name: /^LinkedIn\b/ }`) em vez do nome exato.
 - Quando o critério falar de acessibilidade, inclua `expect(await axe(container)).toHaveNoViolations()` com o `axe` do
   `vitest-axe`.
 - O ambiente de teste é o jsdom, sem CSS aplicado: não teste cor, tamanho, posição nem animação. Esses pontos ficam com
@@ -132,6 +136,13 @@ O Portfolio é um site estático feito com Vite, React e TypeScript. Os testes u
   importado se já estiver no `package.json`.
 - Confira no repositório todo caminho de arquivo que um teste afirmar (imagem, dado, componente que já existe): o
   arquivo precisa existir, ou a spec precisa mandar criá-lo.
+- Testes de aceitação de specs anteriores: busque (Grep em `src/test/aceitacao/`) as asserções sobre o que esta spec
+  muda (textos, classes, nomes acessíveis, arquivos). As que a spec nova torna erradas você atualiza já nesta rodada,
+  mudando só a asserção afetada. O Desenvolvedor não pode editá-las, e cada uma esquecida vira contestação e ciclo
+  perdido.
+- Ninguém do time apaga nem renomeia arquivo. Não escreva teste que dependa disso (por exemplo, `existsSync(...)`
+  esperando `false` para um arquivo que existe): se a spec mandar substituir um arquivo de aceitação, atualize o
+  antigo no lugar.
 - Não crie código de produção. Fora do modo de correção, também não o leia: leia apenas a spec, o plano, o
   `CLAUDE.md` e os testes existentes. A única exceção é confirmar que um arquivo ou trecho que um teste afirma existe
   (listar e buscar no repositório é permitido para isso).

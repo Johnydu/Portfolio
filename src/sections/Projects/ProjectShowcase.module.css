@@ -1,8 +1,8 @@
 /*
  * Vitrine em zigue-zague: a mídia ocupa um lado e o cartão de texto, grafite
- * translúcido com borda âmbar, fica sobreposto do outro. No HTML o texto vem
- * antes da mídia; a ordem visual é feita só pelas áreas do grid.
- * No celular a mídia fica acima do cartão, sem sobreposição.
+ * translúcido com borda âmbar, fica ao lado dela, sem sobreposição. No HTML o
+ * texto vem antes da mídia; a ordem visual é feita só pelas áreas do grid.
+ * No celular a mídia fica acima do cartão.
  */
 .showcase {
   display: block;
@@ -19,8 +19,6 @@
 
 /* Cartão de texto. Sem suporte a backdrop-filter, o fundo é opaco. */
 .body {
-  position: relative;
-  z-index: 1;
   grid-area: corpo;
   display: flex;
   flex-direction: column;
@@ -65,12 +63,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 60%;
-}
-
-/* Capturas de tela com o conteúdo à esquerda (ex.: hero da landing page). */
-.shotStart {
-  object-position: left top;
 }
 
 .mark {
@@ -111,19 +103,7 @@
   }
 
   .body {
-    z-index: 2;
     padding: var(--space-8);
-    margin-inline-start: calc(-1 * var(--space-12));
-  }
-
-  .reverso .body {
-    margin-inline-start: 0;
-    margin-inline-end: calc(-1 * var(--space-12));
-  }
-
-  .semMidia .body,
-  .semMidia.reverso .body {
-    margin-inline: 0;
   }
 }
 

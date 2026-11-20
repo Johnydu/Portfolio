@@ -20,7 +20,7 @@ function Statement() {
 export function Hero() {
   return (
     <Section id="inicio" titleId="titulo-hero">
-      <div className={`${styles.layout}`}>
+      <div className={styles.layout}>
         <div className={styles.content}>
           <TerminalLine text={profile.terminal} />
           <h1 id="titulo-hero" className={styles.name}>
