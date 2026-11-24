@@ -3,9 +3,9 @@ import { describe, expect, it } from 'vitest'
 import { projects } from '../../data/projects'
 import { Projects } from './Projects'
 
-const TITLE = 'convite-aniversario-caleb'
+const TITLE = 'convite-aniversario'
 const CONVITE_ALT =
-  'Captura do topo do convite: cena em pixel art com bandeirinhas, balões, uma criança de chapéu de festa e um bolo com o número 2, sob o título “Caleb faz 2 anos!”'
+  'Captura do topo do convite: cena em pixel art com bandeirinhas, balões, uma criança de chapéu de festa e um bolo com o número 2, sob o título “Theo faz 2 anos!”'
 
 function conviteArticle() {
   render(<Projects />)
@@ -40,18 +40,18 @@ describe('Vitrine do convite de aniversário', () => {
   it('tem links para o repositório e para a página publicada, em nova aba', () => {
     const article = conviteArticle()
     const repo = within(article).getByRole('link', {
-      name: /Repositório\s*do projeto convite-aniversario-caleb/,
+      name: /Repositório\s*do projeto convite-aniversario/,
     })
     const demo = within(article).getByRole('link', {
-      name: /Ver página\s*do projeto convite-aniversario-caleb/,
+      name: /Ver página\s*do projeto convite-aniversario/,
     })
     expect(repo).toHaveAttribute(
       'href',
-      'https://github.com/Johnydu/convite-aniversario-caleb',
+      'https://github.com/Johnydu/convite-aniversario',
     )
     expect(demo).toHaveAttribute(
       'href',
-      'https://johnydu.github.io/convite-aniversario-caleb/',
+      'https://johnydu.github.io/convite-aniversario/',
     )
     for (const link of [repo, demo]) {
       expect(link).toHaveAttribute('target', '_blank')

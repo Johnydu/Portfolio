@@ -87,9 +87,9 @@ export const projects: readonly Project[] = [
     },
   },
   {
-    title: 'convite-aniversario-caleb',
+    title: 'convite-aniversario',
     description:
-      'Convite digital interativo para o aniversário de 2 anos do Caleb, com tema de jogo retrô em pixel art. O convidado informa quantos adultos e crianças vão, confirma a presença pelo WhatsApp com a mensagem pronta e abre a rota no Google Maps ou no Waze.',
+      'Convite digital interativo de aniversário infantil, com tema de jogo retrô em pixel art e dados da festa configuráveis. O convidado informa quantos adultos e crianças vão, confirma a presença pelo WhatsApp com a mensagem pronta e abre a rota no Google Maps ou no Waze.',
     technologies: [
       'React',
       'TypeScript',
@@ -98,12 +98,12 @@ export const projects: readonly Project[] = [
       'SVG',
       'GitHub Actions',
     ],
-    repoUrl: 'https://github.com/Johnydu/convite-aniversario-caleb',
-    demoUrl: 'https://johnydu.github.io/convite-aniversario-caleb/',
+    repoUrl: 'https://github.com/Johnydu/convite-aniversario',
+    demoUrl: 'https://johnydu.github.io/convite-aniversario/',
     showcase: {
       media: {
         src: conviteMedia,
-        alt: 'Captura do topo do convite: cena em pixel art com bandeirinhas, balões, uma criança de chapéu de festa e um bolo com o número 2, sob o título “Caleb faz 2 anos!”',
+        alt: 'Captura do topo do convite: cena em pixel art com bandeirinhas, balões, uma criança de chapéu de festa e um bolo com o número 2, sob o título “Theo faz 2 anos!”',
         width: 1200,
         height: 660,
       },
